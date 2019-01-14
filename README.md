@@ -56,6 +56,9 @@ deviseのデフォルトカラムは除く
 |bottom_id|references|foreign_key:true|
 |sellre_id(user_id)|references|foreign_key:true|
 |buyer_id|references|references|foreign_key:true|
+|category_id|references|references|foreign_key:true|
+|size_id|references|references|foreign_key:true|
+
 
 ### Association
 
@@ -66,30 +69,21 @@ deviseのデフォルトカラムは除く
 - has_one item_status
 - has_one item_size
 - has_one transaction
+- has_one item_categories
+- belongs_to category
+- belongs_to size
 
-## Item_sizes
+## sizes
 
 |Column|Type|Option|
 |------|----|------|
 |size|string|null:false|
-|item_id|references|foreign_key:true|
 
 ### Association
 
-- belongs_to item
+- has_many items
 
 
-## Item_statuses
-商品状態
-
-|Column|Type|Option|
-|------|----|------|
-|status|string|null:false|
-|item_id|references|foreign_key:true|
-
-### Association
-
-- belongs_to item
 
 ## Orders
 発送詳細
@@ -117,47 +111,20 @@ deviseのデフォルトカラムは除く
 
 - belongs_to  item
 
-## Top_categories
+## item_categories
 
 |Column|Type|Option|
 |------|----|------|
-|name|string|null:false|
-|size_select|bool|
-
-size_selectはサイズの有無
-
-### Association
-
-- has_many items
-
-
-
-
-## middle_categories
-
-|Column|Type|Option|
-|------|----|------|
-|name|string|
-|size_select|bool|
+|name|string|unique:true|
+|item_id|references|foreign_key:true|
+|parent_id|references|foreign_key:true|
+|set_size|boolean|default:true|
+サイズがあればtrue,なければfalse
 
 
 ### Association
-
-- has_many items
-
-
-
-## bottom_categories
-
-|Column|Type|Option|
-|------|----|------|
-|name|string|
-|size_select|bool|
-
-### Association
-
-- has_many items
-
+has_many children
+belongs_to parent
 
 ## Comments
 
@@ -256,9 +223,7 @@ size_selectはサイズの有無
 
 |Column|Type|Option|
 |------|----|------|
-|card_num|integer|null:false|
-|security_code|integer|null:false|
-|expiration_data|date|null:false|
+|token|text|unique:true, null:false|
 |user_id|references|foreign_key:true|
 
 ### Association
