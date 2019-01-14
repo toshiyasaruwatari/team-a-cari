@@ -1,15 +1,14 @@
 # README
 
-## Usersテーブル
+## Users
+
+deviseのデフォルトカラムは除く
 
 |Column|Type|Option|
-|:------|:----|:------|
-| name | string | null:  false |
-| icon | text |   |
-| profile_text | text |
-| email | text | null: false |
-| password |  string  | null: false |
-
+|------|----|------|
+|name|string|null: false|
+|icon|text|
+|profile_text|text|
 
 ### Association
 
@@ -19,9 +18,11 @@
 - has_one point
 - has_one proceed
 - has_one user_information
+- has_many transactions
+- has_one credit_card
 
 
-## User_informationsテーブル
+## User_informations
 
 |Column|Type|Option|
 |------|----|------|
@@ -43,17 +44,18 @@
 
 
 
-## Itemsテーブル
+## Items
 
 |Column|Type|Option|
 |------|----|------|
 |name|string|null:false|
 |price|integer|null:false|
 |describe|text|null:false|
-|item_detail_id|references|null:false|
-|sellre_id(user_id)|references|null:false|
-|buyer_id|references|
-|buy_sell|bool|
+|top_category_id|references|foreign_key:true|
+|middle_category_id|references|foreign_key:true|
+|bottom_id|references|foreign_key:true|
+|sellre_id(user_id)|references|foreign_key:true|
+|buyer_id|references|references|foreign_key:true|
 
 ### Association
 
@@ -63,8 +65,9 @@
 - has_one order
 - has_one item_status
 - has_one item_size
+- has_one transaction
 
-## Item_sizesテーブル
+## Item_sizes
 
 |Column|Type|Option|
 |------|----|------|
@@ -76,7 +79,8 @@
 - belongs_to item
 
 
-## Item_statusesテーブル
+## Item_statuses
+商品状態
 
 |Column|Type|Option|
 |------|----|------|
@@ -87,7 +91,8 @@
 
 - belongs_to item
 
-## Ordersテーブル
+## Orders
+発送詳細
 
 |Column|Type|Option|
 |------|----|------|
@@ -101,7 +106,7 @@
 - belongs_to  item
 
 
-## Item_imagesテーブル
+## Item_images
 
 |Column|Type|Option|
 |------|----|------|
@@ -112,49 +117,49 @@
 
 - belongs_to  item
 
-## Item_categoriesテーブル(親カテゴリー)
+## Top_categories
 
 |Column|Type|Option|
 |------|----|------|
-|name|string|
+|name|string|null:false|
+|size_select|bool|
+
+size_selectはサイズの有無
 
 ### Association
 
-- has_many item_types
-
-
-
-
-## Item_typesテーブル(子カテゴリー)
-
-|Column|Type|Option|
-|------|----|------|
-|name|string|
-|item_category_id|references|foreign_key:true|
-
-### Association
-
-- belongs_to item_category
-
-- has_many   item_details
-
-
-
-## Item_detailsテーブル(孫カテゴリー)
-
-|Column|Type|Option|
-|------|----|------|
-|name|string|
-|item_category_id|references|foreign_key:true|
-|item_id|references|foreign_key:true|
-
-### Association
-
-- belongs_to item_type
 - has_many items
 
 
-## Commentsテーブル
+
+
+## middle_categories
+
+|Column|Type|Option|
+|------|----|------|
+|name|string|
+|size_select|bool|
+
+
+### Association
+
+- has_many items
+
+
+
+## bottom_categories
+
+|Column|Type|Option|
+|------|----|------|
+|name|string|
+|size_select|bool|
+
+### Association
+
+- has_many items
+
+
+## Comments
 
 |Column|Type|Option|
 |------|----|------|
@@ -167,7 +172,7 @@
 - belongs_to item
 - belongs_to user
 
-## Reviewsテーブル
+## Reviews
 
 |Column|Type|Option|
 |------|----|------|
@@ -178,18 +183,18 @@
 
 - belongs_to user
 
-## Proceedsテーブル
+## Proceeds
 
 |Column|Type|Option|
 |------|----|------|
-|proceed|integer|
+|proceed|integer|null:false|
 |user_id|references|foreign_key:true|
 
 ### Association
 
 - belongs_to user
 
-## Pointsテーブル
+## Points
 
 |Column|Type|Option|
 |------|----|------|
@@ -200,7 +205,7 @@
 
 - belongs_to user
 
-## sns_groupsテーブル
+## sns_groups
 
 |Column|Type|Option|
 |------|----|------|
@@ -214,7 +219,7 @@
 
 - belongs_to user
 
-## Newsテーブル
+## News
 
 |Column|Type|Option|
 |------|----|------|
@@ -222,7 +227,7 @@
 
 - belongs_to
 
-## likesテーブル
+## likes
 
 |Column|Type|Option|
 |------|----|------|
@@ -233,4 +238,31 @@
 
 - belongs_to user
 - belongs_to item
+
+## transactions
+
+|Column|Type|Option|
+|------|----|------|
+|status|string|null:false|
+|user_id|references|foreign_key:true|
+|item_id|references|foreign_key:true|
+
+### Association
+
+- belongs_to user
+- belongs_to item
+
+## credit_cards
+
+|Column|Type|Option|
+|------|----|------|
+|card_num|integer|null:false|
+|security_code|integer|null:false|
+|expiration_data|date|null:false|
+|user_id|references|foreign_key:true|
+
+### Association
+
+ - belongs_to user
+
 
