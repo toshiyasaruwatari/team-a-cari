@@ -1,0 +1,35 @@
+footer {
+  box-sizing: border-box;
+  position: relative;
+  height: 79rem;
+  background-color: black;
+}
+
+.sell-btn {
+  right: 3rem;
+  bottom: 3rem;
+  font-size: 2rem;
+  display: inline-block;
+  position: fixed;
+  text-decoration: none;
+  background: #ea352d;
+  color: #FFF;
+  width: 16rem;
+  height: 16rem;
+  line-height: 14rem;
+  border-radius: 50%;
+  text-align: center;
+  vertical-align: middle;
+  overflow: hidden;
+  transition: .4s;
+  z-index: 999;
+  &__text {
+    margin: 3.2rem 0 0;
+    line-height: 2rem;
+  }
+  .fa-camera {
+    font-size: 6rem;
+    margin: 0.8rem 0 0;
+    vertical-align: top;
+  }
+}
