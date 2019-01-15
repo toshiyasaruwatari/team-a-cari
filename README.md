@@ -6,41 +6,34 @@ deviseのデフォルトカラムは除く
 
 |Column|Type|Option|
 |------|----|------|
-|name|string|null: false|
+|nickname|string|null:false|
+|introduction|string|
+|first_name|string|
+|last_name|string|
+|first_reading|string|
+|last_reading|string|
+|postal_code|integer|
+|prefecture|string|
+|city|string|
+|building_name|string|
+|address|string|
+|birth_day|integer|
+|birth_month|integer|
+|birth_year|integer|
 |icon|text|
-|profile_text|text|
+|point|integer|null:false|
+|proseed|integer|null:false|
 
 ### Association
 
 - has_many items
 - has_many comments
-- has_one sns_group
-- has_one point
-- has_one proceed
-- has_one user_information
+- has_many sns_groups
 - has_many transactions
 - has_one credit_card
-
-
-## User_informations
-
-|Column|Type|Option|
-|------|----|------|
-|first_name|string|null: false|
-|last_name|string|null:false|
-|first_reading|string|null:failse|
-|last_reading|string|null:false|
-|postal_code|integer|null:false|
-|prefectures|string|null:false|
-|city|string|null:false|
-|adress|text|null:false|
-|building_name|string|
-|day_of_birth|integer|null:false|
-
-### Association
-
-- belongs_to user
-
+- has_many has_many:buyed_items,foreign_key: "buyer_id",class_name: "Item"
+- has_many has_many:exhibition_items,->{where("buyer_id is NULL")},foreign_key: "seller_id",class_name: "Item"
+- has_many has_many:sold_items,->{where("buyer_id is not NULL")},foreign_key: "seller_id",class_name: "Item"
 
 
 
@@ -51,11 +44,14 @@ deviseのデフォルトカラムは除く
 |name|string|null:false|
 |price|integer|null:false|
 |describe|text|null:false|
-|top_category_id|references|foreign_key:true|
-|middle_category_id|references|foreign_key:true|
-|bottom_id|references|foreign_key:true|
-|sellre_id(user_id)|references|foreign_key:true|
-|buyer_id|references|references|foreign_key:true|
+|status|string|null:false|
+|derivery_fee|integer|null:false|
+|region|string|null:false|
+|how_days|integer|null:false|
+|category_id|references|foreign_key:true|
+|sellre_id(販売者のuser_id)|references|foreign_key:true|
+|buyer_id(購入者のuser_id)|references|foreign_key:true|
+|brand_id|references|foreign_key:true|
 |category_id|references|references|foreign_key:true|
 |size_id|references|references|foreign_key:true|
 
@@ -65,13 +61,11 @@ deviseのデフォルトカラムは除く
 - belongs_to user
 - has_many comments
 - has_many  item_images
-- has_one order
-- has_one item_status
-- has_one item_size
 - has_one transaction
-- has_one item_categories
-- belongs_to category
+- has_many categories
 - belongs_to size
+- belongs_to seller, class:name:"User"
+- belongs_to buyer, class:name:"User"
 
 ## sizes
 
@@ -85,20 +79,6 @@ deviseのデフォルトカラムは除く
 
 
 
-## Orders
-発送詳細
-
-|Column|Type|Option|
-|------|----|------|
-|delivery_fee|string|null:false|
-|region|string|null:false|
-|how_days|string|null:false|
-|item_id|references|foreign_key:true|
-
-### Association
-
-- belongs_to  item
-
 
 ## Item_images
 
@@ -111,20 +91,16 @@ deviseのデフォルトカラムは除く
 
 - belongs_to  item
 
-## item_categories
+## categories
 
 |Column|Type|Option|
 |------|----|------|
 |name|string|unique:true|
-|item_id|references|foreign_key:true|
 |parent_id|references|foreign_key:true|
-|set_size|boolean|default:true|
-サイズがあればtrue,なければfalse
-
 
 ### Association
-has_many children
-belongs_to parent
+has_many categories,class_name:"Category",foreign_key:true
+belongs_to parent, class_name:"Category"
 
 ## Comments
 
@@ -144,46 +120,22 @@ belongs_to parent
 |Column|Type|Option|
 |------|----|------|
 |review|integer|null:false|
-|item_id|references|foreign_key:true|
-
-### Association
-
-- belongs_to user
-
-## Proceeds
-
-|Column|Type|Option|
-|------|----|------|
-|proceed|integer|null:false|
 |user_id|references|foreign_key:true|
 
 ### Association
-
+enum review {good:0,normal:1,bad:2}
 - belongs_to user
 
-## Points
-
-|Column|Type|Option|
-|------|----|------|
-|point|integer|null:false|
-|user_id|references|foreign_key:true|
-
-### Association
-
-- belongs_to user
 
 ## sns_groups
 
 |Column|Type|Option|
 |------|----|------|
-|facebook|text|
-|twitter|text|
-|google|text|
-|line|text|
+|provider|text|null:false|
 |user_id|references|foreign_key:true|
 
 ### Association
-
+enum provider{facebook:0,line:1,google:2,twitter:3}
 - belongs_to user
 
 ## News
@@ -191,8 +143,11 @@ belongs_to parent
 |Column|Type|Option|
 |------|----|------|
 |topic|text|
+|user_id|references|foreign_key:true|
 
-- belongs_to
+### Association
+belongs_to user
+
 
 ## likes
 
@@ -206,6 +161,7 @@ belongs_to parent
 - belongs_to user
 - belongs_to item
 
+
 ## transactions
 
 |Column|Type|Option|
@@ -215,7 +171,7 @@ belongs_to parent
 |item_id|references|foreign_key:true|
 
 ### Association
-
+enum status {good:0,normal:1,bad:2}
 - belongs_to user
 - belongs_to item
 
