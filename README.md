@@ -52,8 +52,8 @@ deviseのデフォルトカラムは除く
 |sellre_id(販売者のuser_id)|references|foreign_key:true|
 |buyer_id(購入者のuser_id)|references|foreign_key:true|
 |brand_id|references|foreign_key:true|
-|category_id|references|references|foreign_key:true|
-|size_id|references|references|foreign_key:true|
+|category_id|references|foreign_key:true|
+|size_id|references|foreign_key:true|
 
 
 ### Association
