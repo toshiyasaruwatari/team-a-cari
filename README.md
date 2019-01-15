@@ -44,7 +44,7 @@ deviseのデフォルトカラムは除く
 |name|string|null:false|
 |price|integer|null:false|
 |describe|text|null:false|
-|status|string|null:false|
+|status|integer|null:false|
 |derivery_fee|integer|null:false|
 |region|string|null:false|
 |how_days|integer|null:false|
@@ -58,6 +58,7 @@ deviseのデフォルトカラムは除く
 
 ### Association
 
+enum status{"新品、未使用":0,"未使用に近い":1,"目立った 傷や汚れなし":2,"やや傷や汚れあり":3,"傷や汚れあり":4,"全体的に状態が悪い":5}
 - belongs_to user
 - has_many comments
 - has_many  item_images
@@ -106,7 +107,7 @@ belongs_to parent, class_name:"Category"
 
 |Column|Type|Option|
 |------|----|------|
-|comment|text|
+|comment|text|null:false|
 |user_id|references|foreign_key:true|
 |item_id|references|foreign_key:true|
 
@@ -167,11 +168,13 @@ belongs_to user
 |Column|Type|Option|
 |------|----|------|
 |status|string|null:false|
-|user_id|references|foreign_key:true|
+|seller_id|references|foreign_key:true|
+|buyer_id|references|foreign_key:true|
 |item_id|references|foreign_key:true|
+|user_id|references|foreign_key:true|
 
 ### Association
-enum status {good:0,normal:1,bad:2}
+enum provider {出品中: 0,取引中: 1,売却済: 2}
 - belongs_to user
 - belongs_to item
 
