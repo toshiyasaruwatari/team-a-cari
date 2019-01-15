@@ -28,7 +28,7 @@ deviseのデフォルトカラムは除く
 
 - has_many items
 - has_many comments
-- has_many sns_groups
+- has_many sns_informations
 - has_many transactions
 - has_one credit_card
 - has_many has_many:buyed_items,foreign_key: "buyer_id",class_name: "Item"
@@ -127,7 +127,7 @@ enum review {good:0,normal:1,bad:2}
 - belongs_to user
 
 
-## sns_groups
+## sns_informations
 
 |Column|Type|Option|
 |------|----|------|
@@ -138,11 +138,11 @@ enum review {good:0,normal:1,bad:2}
 enum provider{facebook:0,line:1,google:2,twitter:3}
 - belongs_to user
 
-## News
+## Notification
 
 |Column|Type|Option|
 |------|----|------|
-|topic|text|
+|text|text|
 |user_id|references|foreign_key:true|
 
 ### Association
