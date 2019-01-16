@@ -1,0 +1,112 @@
+.prof__wrapper {
+  background-color: #f5f5f5;
+}
+
+.prof__l-container {
+  width: 102rem;
+  height: 129.2rem;
+  margin: 0 auto 0;
+  padding: 4rem 0 4rem;
+}
+
+.prof__l-content {
+  background-color: #fff;
+  float: right;
+  width: 70rem;
+  .prof__l-chapter-head {
+    padding: 0.8rem 2.4rem;
+    font-size: 2.4rem;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 0.1rem solid #f5f5f5;
+  }
+  .prof__setting-profile-icon {
+    height: 5.3rem;
+    padding: 7.2rem 1.6rem 2.4rem;
+    background-size: cover;
+    background: url('user-bg.jpg');
+    text-align: center;
+    figure.prof__icon-image {
+      display: inline-block;
+      overflow: hidden;
+      width: 6rem;
+      height: 6rem;
+      margin: 0;
+      border-radius: 50%;
+      vertical-align: middle;
+    }
+  }
+  .prof__input-default {
+    display: inline-block;
+    width: 19rem;
+    margin: 0 0 0 0.8rem;
+    vertical-align: middle;
+    height: 2.8rem;
+    padding: 1rem 1.6rem 0.8rem;
+    border-radius: 0.4rem;
+    border: 0.1rem solid #ccc;
+    background: #fff;
+    line-height: 1.5;
+    font-size: 1.6rem;
+  }
+  .prof__setting-profile-content {
+    padding: 4rem 1.6rem;
+    .prof__textarea-default {
+      display: block;
+      width: 64.6rem;
+      max-width: 64.6rem;
+      min-width: 64.6rem;
+      min-height: 21.6rem;
+      padding: 1rem;
+      border: 0.1rem solid #ccc;
+      line-height: 1.5;
+      font-size: 1.6rem;
+    }
+  }
+  .prof__btn-default {
+    display: block;
+    width: 100%;
+    margin: 1.6rem 0 0;
+    line-height: 4.8rem;
+    background: #ea352d;
+    border: 0.1rem solid #ea352d;
+    font-size: 1.4rem;
+    color: #fff;
+  }
+}
+
+.prof__l-side {
+  float: left;
+  width: 28rem;
+  margin-right: 4rem;
+  ul.prof__mypage-nav-list {
+      padding: 0;
+    .prof__mypage-nav-list li {
+      list-style: none;
+      border-top: 0.1rem solid #eee;
+      .prof__mypage-nav-list-item {
+        display: block;
+        width: 24.8rem;
+        padding: 1.6rem;
+        line-height: 1.4rem;
+        font-size: 1.4rem;
+        background: #fff;
+        color: #333;
+        text-decoration: none;
+        .prof__icon-arrow-right {
+          float: right;
+          transform: translateY(-25%) translateX(-50%);
+          right: 1.6rem;
+          font-size: 2.5rem;
+          font-weight: bold;
+          color: #ccc;
+        }
+      }
+      .prof__mypage-nav-head {
+        width: 28rem;
+        margin: 4rem 0 0;
+        font-size: 1.6rem;
+      }
+    }
+  }
+}
