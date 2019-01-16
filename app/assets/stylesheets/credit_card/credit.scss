@@ -164,3 +164,40 @@
     margin-top: 3rem;
     text-align: center;
   }
+.default__card--list-text {
+    margin: 0 auto;
+    margin: 0 auto;
+    max-width: 32rem;
+  h3 {
+    font-size: 1.6rem;
+    font-weight: bold;
+  }
+}
+.default__card--list {
+  background-color: #fff;
+  padding: 6.4rem;
+}
+
+.credit__add__wrapper--button{
+    padding: 2.4rem 0;
+    border-bottom: 0.1rem solid #eee;
+    .link__add__card {
+      text-decoration: none;
+    }
+  .credit__add__content--button{
+    background: #ea352d;
+    border: 1px solid #ea352d;
+    color: #fff;
+    max-width: 32rem;
+    margin: 0 auto;
+    display: block;
+    width: 100%;
+    line-height: 4.8rem;
+    font-size: 1.4;
+    border: 0.1rem solid transparent;
+    -webkit-transition: all ease-out .3s;
+    transition: all ease-out .3s;
+    cursor: pointer;
+    text-align: center;
+  }
+}

@@ -3,4 +3,7 @@ class ItemsController < ApplicationController
   end
   def card
   end
+
+  def card_add
+  end
 end
