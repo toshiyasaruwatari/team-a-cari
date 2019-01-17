@@ -30,11 +30,11 @@
           %span.card__content--require.card__require--default 必須
           .select__wrapper
             %i.fa.fa-angle-down
-            = f.select :name, [1,2,3,4,5,6,7,8,9,10,11,12], { id: "payment_card_expire_mm" } , { class: "select__month select-default" }
+            = f.date_select :name, (options = {discard_day: true, discard_year: true,use_month_numbers: true}), { class: "select__year select-default" }
             %span.month__text 月
           .select__wrapper
             %i.fa.fa-angle-down
-            = f.select :name, [19,20,21,22,23,24,25,26,27,28,29,30], { id: "payment_card_expire_mm" } , { class: "select__year select-default" }
+            = f.date_select :name, (options = {discard_day: true, discard_month: true,use_month_numbers: true, start_year:23, end_year: 30}), { class: "select__year select-default" }
             %span.year__text 年
           .sequrity__code--wrapper
             = f.label :セキュリティコード
