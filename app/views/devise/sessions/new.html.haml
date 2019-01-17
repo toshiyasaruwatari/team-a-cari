@@ -1,0 +1,25 @@
+.login__container
+  = render "modules/header_logo_only"
+  %main.signin__main
+    .login__content
+      .login__content--signin
+        %p アカウントをお持ちでない方はこちら
+        = link_to "新規会員登録"
+      .login__main--inner
+        %button#facebook-login.btn-sns
+          %i.fa.fa-facebook-official
+          Facebookでログイン
+        %button#google-login.btn-sns
+          %i.fa.fa-google-plus
+          Googleでログイン
+      = form_with url: "rooto_path", method: "POST" do |f|
+        .login__main--inner
+          .login__form
+            = f.email_field :email, class: "login__form--default login__email"
+          .login__form
+            = f.password_field :password, class: "login__form--default login__pass"
+          .g-recaptcha{"data-sitekey" => "6LcAJ4oUAAAAAPJ-gRLKEkhePTBcBWT4tklVb6wi"}
+          = f.submit value: "ログアウト", class: "login__button login__form--default"
+      = link_to "パスワードをお忘れの方", root_path , class: "forget__password"
+.poricy__img--content
+  = image_tag ("/assets/poricy.png")
