@@ -1,0 +1,48 @@
+= render 'card/head'
+%main.sample__wrapper
+  .sample__box
+  .card__wrapper
+    %section.card__input--text
+      %h2 クレジットカード情報入力
+    = form_with method: 'POST', class: "credit__card--form" do |f|
+      .card__content
+        .card__content--form.card__form--default
+          = f.label :カード番号
+          %span.card__content--require.card__require--default 必須
+          = f.text_field :text, placeholder: "半角数字のみ" , class: "card__input--default"
+          %ul.credit__card--list
+            %li
+            = image_tag ('/assets/visa.svg'),class: 'card__icon card__visa'
+            %li
+            = image_tag ('/assets/master-card.svg'),class: 'card__icon card__master'
+            %li
+            = image_tag ('/assets/saison-card.svg'),class: 'card__icon card__saison'
+            %li
+            = image_tag ('/assets/jcb.svg'),class: 'card__icon card__jcb'
+            %li
+            = image_tag ('/assets/american_express.svg'),class: 'card__icon card__american'
+            %li
+            = image_tag ('/assets/dinersclub.svg'),class: 'card__icon card__dinersclub'
+            %li
+            = image_tag ('/assets/discover.svg'),class: 'card__icon card__discover'
+        .card__expiration--select.card__form--default
+          = f.label :有効期限
+          %span.card__content--require.card__require--default 必須
+          .select__wrapper
+            %i.fa.fa-angle-down
+            = f.date_select :name, (options = {discard_day: true, discard_year: true,use_month_numbers: true}), { class: "select__year select-default" }
+            %span.month__text 月
+          .select__wrapper
+            %i.fa.fa-angle-down
+            = f.date_select :name, (options = {discard_day: true, discard_month: true,use_month_numbers: true, start_year:23, end_year: 30}), { class: "select__year select-default" }
+            %span.year__text 年
+          .sequrity__code--wrapper
+            = f.label :セキュリティコード
+            %span.card__content--require.card__require--default 必須
+            = f.text_field :name, placeholder: "カード背面4桁もしくは3桁の番号", class: "sequrity__code--box"
+          .credit__card--add
+            .sequrity__code--qsbox
+              %span.card__question ?
+            カード裏面の番号とは？
+          = f.submit :追加する,class: "credit__card__add--submit"
+
