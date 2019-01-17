@@ -179,8 +179,8 @@
 }
 
 .credit__add__wrapper--button{
-    padding: 2.4rem 0;
     border-bottom: 0.1rem solid #eee;
+    margin-top: -5rem;
     .link__add__card {
       text-decoration: none;
     }
@@ -199,5 +199,42 @@
     transition: all ease-out .3s;
     cursor: pointer;
     text-align: center;
+    font-size: 1.4rem;
+    margin-bottom: 3rem;
   }
+}
+
+.fa-credit-card{
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-right: 2rem;
+}
+.card__input--text {
+  background-color: #fff;
+}
+
+.set__payment {
+    display: block;
+    text-align: right;
+    margin-top: 4rem;
+    margin-right: 4rem;
+    padding-bottom: 5rem;
+      span{
+        color: #0099e8;
+        font-size: 1.5rem;
+    }
+    a {
+      text-decoration: none;
+    }
+    a span {
+      vertical-align: middle;
+    }
+    .fa-angle-right {
+      color: #0099e8;
+      font-size: 2.4rem;
+      margin: 0 0 0 0.8rem;
+    }
+    .fa-angle-right:before {
+      vertical-align: sub;
+    }
 }
