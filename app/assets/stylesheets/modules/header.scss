@@ -1,5 +1,6 @@
 header {
   min-width: 76.8rem;
+  background-color: #FFF;
   .header-inner {
     box-sizing: border-box;
     height: 9rem;
@@ -75,7 +76,7 @@ header {
         box-sizing: border-box;
         display: inline-block;
         height: 3.8rem;
-        width: 20rem;
+        width: auto;
         float: right;
         .l-right {
           overflow: hidden;
@@ -99,14 +100,86 @@ header {
             font-size: 1.4rem;
             text-align: center;
             border-radius: 0.4rem;
-            margin-left: 0.5rem;
+            margin-left: 1rem;
             color: #0099FF;
             border: solid 0.1rem #0099FF;
             text-decoration: none;
             float: right;
+          }
+          ul.header-user-nav {
+            font-size: 1.4rem;
+            li {
+              position: relative;
+              display: inline-block;
+              padding: 0 0 0 16px;
+              vertical-align: middle;
+              a.icons {
+                box-sizing: border-box;
+                display: block;
+                color: #333;
+                height: 38px;
+                line-height: 32px;
+                text-decoration: none;
+                img.user-icon {
+                  width: 3.2rem;
+                  height: 3.2rem;
+                  border-radius: 50%;
+                }
+                .fa-check {
+                  font-size: 2rem;
+                }
+                span.icon-text {
+                  vertical-align: top;
+                  margin-left: 0.6rem;
+                }
+              }
+            }
+            .header-notifications {
+              a.notifications {
+                display: block;
+                height: 38px;
+                span {
+                  margin-left: 0.8rem;
+                  vertical-align: left;
+                }
+              }
+            }
           }
         }
       }
     }
   }
 }
+
+.bread-crumbs {
+  box-sizing: border-box;
+  position: relative;
+  border: 0.1rem solid #eee;
+  background-color: #fff;
+  height: 5rem;
+  ul {
+    box-sizing: border-box;
+    width: 102rem;
+    margin: 0 auto;
+    padding: 1.7rem 0 1.6rem;
+    white-space: normal;
+    height: 4.8rem;
+    background-color: #FFF;
+    li {
+      box-sizing: border-box;
+      display: inline-block;
+      font-size: 1.4rem;
+      line-height: 1.2;
+      a {
+        text-decoration: none;
+        color: #000;
+      }
+      .fa-chevron-right {
+        margin: 0 0.8rem;
+        font-size: 0.9rem;
+        color: #888;
+      }
+    }
+  }
+}
+
