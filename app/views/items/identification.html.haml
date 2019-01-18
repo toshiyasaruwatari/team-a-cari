@@ -24,7 +24,7 @@
             %ul.header-user-nav
               %li
                 = link_to root_path, class: "icons" do
-                  %img.user-icon{src: "assets/member_photo_noimage_thumb.png"}
+                  = image_tag ("/assets/member_photo_noimage_thumb.png"), class: "user-icon"
                   %span.icon-text
                     マイページ
               %li
@@ -116,3 +116,4 @@
               = link_to root_path do
                 %span 本人情報の登録について
                 %i.fa.fa-angle-right
+  = image_tag ("/assets/mercari.png"), class: "identification__fotter"
