@@ -1,5 +1,5 @@
 %header.signin__header
-  = link_to image_tag('/assets/logo.svg', class: "signin__header--logo"), root_path
+  = link_to image_tag (asset_path 'logo.svg'), class: "signin__header--logo"
 
 .buy__single-main
   %section.buy__l-single-container.buy-item-container
@@ -7,9 +7,10 @@
     %section.buy__content-buy-item
       .buy-content-item-inner
         %h3.buy-item-image
-          %img.buy__lazyloaded{src: 'https://mcdn.mercariapp.com/thumb/photos/m61733118736_1.jpg?1547703702'}
+          = image_tag (asset_path 'm52773408832_1.jpg'), class: 'buy__lazyloaded'
         %p.buy__item-name.bold 商品名
-        %form.buy__buy-form{action: "", method: "POST", novalidate: ""}
+        = form_with class: 'buy__buy-form'
+        .buy__buy-form
           %p.buy__price-ja.bold
             ¥ 0
             %span.item-shipping-fee.f14.bold 送料込み
