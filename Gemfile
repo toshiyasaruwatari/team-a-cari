@@ -62,6 +62,7 @@ gem 'erb2haml'
 gem "font-awesome-rails"
 gem 'pry-rails'
 gem 'devise'
+gem 'jquery-rails'
 
 group :production do
   gem 'unicorn'
