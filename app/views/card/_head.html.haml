@@ -1,0 +1,19 @@
+.home-container
+  %header
+    .header-inner
+      .upper-box
+        %a.upper-box__logo{href: ""}
+          %img{src: "/assets/logo.png"}
+        %input.upper-box__search{placeholder: "キーワードから探す", type: "text"}
+        = fa_icon "search"
+      .under-box
+        .under-box__left
+          %ul.l-left
+            %li
+              %a.from-category{href: "#"} カテゴリーから探す
+            %li
+              %a.from-bland{href: "#"} ブランドから探す
+        .under-box__right
+          .l-right
+            %a.header-login-btn{href: "#"} ログイン
+            %a.header-signup-btn{href: "#"} 新規会員登録
