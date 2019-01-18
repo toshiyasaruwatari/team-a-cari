@@ -1,0 +1,183 @@
+header.signin__header {
+  background-color: #f5f5f5;
+}
+
+.buy__single-main {
+  display: block;
+  background-color: #f5f5f5;
+}
+  section.buy__l-single-container {
+    width: 70rem;
+    margin: 0 auto;
+    background-color: #fff;
+  }
+
+    h2.buy__l-single-head {
+      padding: 3.2rem 1.6rem;
+      line-height: 1.5;
+      text-align: center;
+      font-size: 2.2rem;
+      font-weight: 600;
+      color: rgb(51, 51, 51);
+    }
+
+    section.buy__content-buy-item {
+      margin: 0;
+      padding: 2.4rem 12.5% 0;
+      border-top: 0.1rem solid #f5f5f5;
+
+      .buy-content-item-inner {
+        max-width: 32rem;
+        margin: 0 auto;
+
+        h3.buy-item-image {
+          font-size: 2.2rem;
+          text-align: center;
+          img.buy__lazyloaded {
+            width: 14.8rem;
+            vertical-align: middle;
+            opacity: 1;
+          }
+        }
+
+        p.buy__item-name.bold {
+          width: 32rem;
+          margin: 0.8rem 0 0;
+          line-height: 1.5;
+          font-size: 1.6rem;
+          text-align: center;
+          font-weight: 600;
+          color: rgb(51, 51, 51);
+        }
+
+        form.buy__buy-form {
+          margin: 0;
+          padding: 0;
+          display: block;
+          text-align: center;
+          color: rgb(51, 51, 51);
+
+          p.buy__price-ja.bold {
+            margin: 0.8rem 0 0;
+            line-height: 1.5;
+            font-size: 2.5rem;
+            font-weight: 600;
+            span.item-shipping-fee.f14.bold {
+              margin: 0 0 0 0.8rem;
+              font-size: 1.4rem;
+              font-weight: 400;
+            }
+          }
+
+          ul.buy__buy-accordion {
+            margin: 1.6rem 0 0;
+            padding: 0;
+            line-height: 1;
+            list-style: none;
+            li.buy__accordion-parent {
+              padding: 0;
+              list-style: none;
+              .buy__accordion-toggle-point {
+                position: relative;
+                margin: 0;
+                padding: 1.6rem;
+                border: 0.1rem solid #ccc;
+                font-size: 1.4rem;
+                cursor: pointer;
+                i.buy__accordion-icon {
+                  display: inline-block;
+                  transform: translateY(50%) translateX(0%);
+                  line-height: 1rem;
+                  font-size: 2.8rem;
+                  font-weight: 400;
+                }
+              }
+            }
+          }
+
+          ul.buy__price-table {
+            display: table;
+            width: 100%;
+            border-collapse: collapse;
+            list-style: none;
+            li.buy__price-row.bold {
+              display: table-row;
+              border: 0;
+              font-size: 2.8rem;
+              font-weight: 600;
+              .buy__price-cell {
+                display: table-cell;
+                margin: 0;
+                padding: 1.6rem 0;
+                text-align: left;
+              }
+              span.buy__price-cell {
+                text-align: right;
+              }
+            }
+          }
+          .btn-red.bold {
+            width: 100%;
+            position: relative;
+            cursor: pointer;
+            margin: 1.6rem 0 0;
+            background-color: #ea352d;
+            border: 0.1rem solid;
+            font-size: 1.4rem;
+            color: #fff;
+          }
+        }
+      }
+    }
+
+    section.buy__content-user,.buy__content-user-last {
+      margin: 4rem 0 0;
+      padding: 2.4rem 12.5% 0;
+      border-top: 0.1rem solid #f5f5f5;
+      font-size: 1.4rem;
+      .buy__content-user-inner {
+        max-width: 32rem;
+        margin: 0 auto;
+        h3.buy__content-user-inner {
+          font-size: 1.4rem;
+          font-weight: bold;
+        }
+        .buy__user-info-text {
+          margin: 0.8rem 0 0;
+          line-height: 1.4;
+        }
+        img.buy__user-info-card {
+          width: 3.4rem;
+          height: 2rem;
+        }
+        .buy__user-info-fix {
+            display: block;
+            text-align: right;
+            vertical-align: middle;
+            color: #0099e8;
+            text-decoration: none;
+            .buy__icon-arrow-right {
+              display: inline-block;
+              margin: 0 0 0 0.8rem;
+              line-height: 1;
+              font-size: 1.8rem;
+              font-weight: 400;
+            }
+          }
+      }
+    }
+    section.buy__content-user-last {
+      padding: 4rem 12.5%;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
