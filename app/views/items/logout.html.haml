@@ -1,4 +1,4 @@
-.card__contents__wrapper
+.logout__wrapper
   %header
     .header-inner
       .upper-box
@@ -38,7 +38,6 @@
                   %span.icon-text
                     やることリスト
 
-
   %nav.bread-crumbs
     %ul
       %li{itemscope: true, itemtype: "#"}
@@ -53,26 +52,12 @@
       %li{itemscope: true, itemtype: "#"}
         %span.logpot_bold{itemprop: "title"}
           ログアウト
-
-  %main.prof__l-container.clearfix.credit__flexbox
+  %main.prof__l-container.clearfix
     = render 'side/side_bar'
 
-    .card__wrapper
-      %section.card__input--text
-        %h2 支払い方法
-        .default__card--list
-          %section
-            .default__card--list-text
-              %h3 クレジットカード一覧
-        %section.credit__add__wrapper--button
-          = link_to root_path, class: "link__add__card" do
-            .credit__add__content--button
-              %i.fa.fa-credit-card
-              クレジットカードを追加する
-        .set__payment
-          = link_to root_path do
-            %span お支払い方法について
-            %i.fa.fa-angle-right
+    .logout__content
+      .logout__btn__wrapper
+        = link_to "ログアウト", root_path, class: "btn__logout"
 
   = image_tag (asset_path "mercari.png")
 
