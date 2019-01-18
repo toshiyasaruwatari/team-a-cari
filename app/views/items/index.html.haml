@@ -2,7 +2,7 @@
   .header-inner
     .upper-box
       = link_to root_path, class: "upper-box__logo" do
-        = image_tag("/assets/logo.png")
+        = image_tag (asset_path "logo.png")
       %input.upper-box__search{placeholder: "キーワードから探す", type: "text"}
       = fa_icon "search"
     .under-box
@@ -24,8 +24,8 @@
 %main.top-page-main{role: "main"}
   .swiper-container
     .swiper-wrapper
-      = image_tag("/assets/welcome1.jpg", class: "swiper-slide")
-      = image_tag("/assets/tsuyoshi.png", class: "swiper-slide")
+      = image_tag (asset_path "welcome1.jpg"), class: "swiper-slide"
+      = image_tag (asset_path "tsuyoshi.png"), class: "swiper-slide"
     .swiper-button-prev
     .swiper-button-next
     .swiper-pagination
@@ -92,7 +92,7 @@
       = render 'pickup'
 
 %footer
-  = image_tag("/assets/mercari.png")
+  = image_tag (asset_path "mercari.png")
 
 %a.sell-btn
   .sell-btn__text 出品
