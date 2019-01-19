@@ -66,6 +66,8 @@ gem 'jquery-rails'
 gem 'fog-aws'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'seed-fu'
+gem 'config'
 
 group :production do
   gem 'unicorn'
