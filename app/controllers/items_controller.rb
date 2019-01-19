@@ -29,6 +29,4 @@ class ItemsController < ApplicationController
   def mypage
   end
 
-  def
-
 end
