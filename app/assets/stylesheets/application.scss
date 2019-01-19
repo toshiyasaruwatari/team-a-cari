@@ -1,12 +1,14 @@
+@import "./_reset";
 @import "modules/header";
 @import "modules/main";
 @import "modules/footer";
 @import "./mypage";
 @import "edit";
-@import "./_reset";
+@import "buy";
 @import "font-awesome";
 @import "./resistrate";
 @import "modules/session";
 @import "credit_card/credit";
 @import "identification";
 @import "item_buy";
+@import "logout";
