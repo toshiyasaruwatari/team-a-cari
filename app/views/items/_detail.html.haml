@@ -51,8 +51,8 @@
         商品詳細ページ
 
 %section.item-detail-container
-  %h1.item-name スノーシューズ レディース 23
-  .item-main-content
+  %h1.item-detail-container__item-name スノーシューズ レディース 23
+  .item-detail-container__main-content
     .item-photo
       .main-image
         = image_tag(asset_path "cloth3.jpg")
@@ -123,9 +123,9 @@
           %td 4~7日で発送
 
   .item-price-box.text-center
-    %span.item-price.bold ¥1.800
-    %span.item-tax (税込)
-    %span.item-shipping-fee 送料込み
+    %span.item-price-box__price.bold ¥1.800
+    %span.item-price-box__tax (税込)
+    %span.item-price-box__fee 送料込み
   .item-buy-btn 購入画面に進む
   / .item-buy-btn.disabled 売り切れました
   .item-description

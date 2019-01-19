@@ -33,13 +33,13 @@ figure {
   background: #fff;
   margin: 4rem auto 0;
   width: 70rem;
-  .item-name {
+  &__item-name {
     font-size: 2.4rem;
     text-align: center;
     word-wrap: break-word;
     line-height: 1.4;
   }
-  .item-main-content {
+  &__main-content {
     box-sizing: border-box;
     overflow: hidden;
     margin: 1.6rem 0 0;
@@ -124,11 +124,11 @@ figure {
   }
   .item-price-box {
     margin: 2.4rem 0 0;
-    .item-price {
+    &__price {
       margin-right: 1.6rem;
       font-size: 5rem;
     }
-    .item-shipping-fee {
+    &__fee {
       display: inline-block;
       font-size: 1.6rem;
     }
