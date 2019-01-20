@@ -29,4 +29,7 @@ class ItemsController < ApplicationController
   def mypage
   end
 
+  def membership
+  end
+
 end
