@@ -11,5 +11,6 @@ Rails.application.routes.draw do
   get '/g', to: 'items#logout'
   get '/h', to: 'items#mypage'
   get '/i', to: 'items#new'
+  get '/j', to: 'items#membership'
 
 end
