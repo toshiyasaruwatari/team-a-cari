@@ -8,21 +8,23 @@ deviseのデフォルトカラムは除く
 |------|----|------|
 |nickname|string|null:false|
 |introduction|string|
+|icon|text|
 |first_name|string|
 |last_name|string|
 |first_reading|string|
 |last_reading|string|
+|phone_number|integer|
 |postal_code|integer|
-|prefecture|string|
+|prefecture_id|integer|
 |city|string|
 |building_name|string|
 |address|string|
 |birth_day|integer|
 |birth_month|integer|
 |birth_year|integer|
-|icon|text|
-|point|integer|null:false|
-|proseed|integer|null:false|
+|point|integer|null:false, default:0|
+|proseed|integer|null:false, default:0|
+
 
 ### Association
 
@@ -30,11 +32,15 @@ deviseのデフォルトカラムは除く
 - has_many comments
 - has_many sns_informations
 - has_many transactions
-- has_one credit_card
-- has_many has_many:buyed_items,foreign_key: "buyer_id",class_name: "Item"
-- has_many has_many:exhibition_items,->{where("buyer_id is NULL")},foreign_key: "seller_id",class_name: "Item"
-- has_many has_many:sold_items,->{where("buyer_id is not NULL")},foreign_key: "seller_id",class_name: "Item"
-
+- has_many credit_card
+- has_many:buyed_items,foreign_key: "buyer_id",class_name: "Item"
+- has_many:exhibition_items,->{where("buyer_id is NULL")},foreign_key: "seller_id",class_name: "Item"
+- has_many:sold_items,->{where("buyer_id is not NULL")},foreign_key: "seller_id",class_name: "Item"
+- has_many to_do_things
+- has_many notifications
+- has_many likes
+- has_many reviews
+- belongs_to prefecture
 
 
 ## Items
@@ -44,27 +50,32 @@ deviseのデフォルトカラムは除く
 |name|string|null:false|
 |price|integer|null:false|
 |describe|text|null:false|
-|status|integer|null:false|
-|derivery_fee|integer|null:false|
-|region|string|null:false|
-|how_days|integer|null:false|
-|category_id|references|foreign_key:true|
+|status_id|integer|null:false, foreign_key:true|
+|brand_id|references|foreign_key:true|
+|burden_id|integer|null:false, foreign_key:true|
+|size_id|references|foreign_key:true|
+|prefecture_id|integer|null:false, foreign_key:true|
+|delivery_day_id|integer|null:false, foreign_key:true|
+|category_id|references|null:false, foreign_key:true|
 |sellre_id(販売者のuser_id)|references|foreign_key:true|
 |buyer_id(購入者のuser_id)|references|foreign_key:true|
-|brand_id|references|foreign_key:true|
-|category_id|references|foreign_key:true|
-|size_id|references|foreign_key:true|
+
 
 
 ### Association
 
-enum status{"新品、未使用":0,"未使用に近い":1,"目立った 傷や汚れなし":2,"やや傷や汚れあり":3,"傷や汚れあり":4,"全体的に状態が悪い":5}
 - belongs_to user
 - has_many comments
 - has_many  item_images
+- has_many likes
 - has_one transaction
-- has_many categories
+- belongs_to categories
 - belongs_to size
+- belongs_to status
+- belongs_to brand
+- belongs_to burden
+- belongs_to delivery_day
+- belongs_to prefecture
 - belongs_to seller, class:name:"User"
 - belongs_to buyer, class:name:"User"
 
@@ -78,6 +89,59 @@ enum status{"新品、未使用":0,"未使用に近い":1,"目立った 傷や�
 
 - has_many items
 
+
+## prefectures
+
+|Column|Type|Option|
+|------|----|------|
+|name|string|null:false|
+
+### Association
+
+- has_many users
+- has_many items
+
+
+## statuses
+
+|Column|Type|Option|
+|------|----|------|
+|name|string|null:false|
+
+### Association
+
+ - has_many items
+
+## brands
+
+|Column|Type|Option|
+|------|----|------|
+|name|string|null:false|
+
+### Association
+
+ - has_many items
+
+## burden (配送料負担)
+
+|Column|Type|Option|
+|------|----|------|
+|name|string|null:false|
+
+### Association
+
+ - has_many items
+
+
+## delivery_days
+
+|Column|Type|Option|
+|------|----|------|
+|days|string|null:false|
+
+### Association
+
+ - has_many items
 
 
 
@@ -96,12 +160,13 @@ enum status{"新品、未使用":0,"未使用に近い":1,"目立った 傷や�
 
 |Column|Type|Option|
 |------|----|------|
-|name|string|unique:true|
-|parent_id|references|foreign_key:true|
+|name|string|unique:true, null:false|
+|ancestry|string|
 
 ### Association
-has_many categories,class_name:"Category",foreign_key:true
-belongs_to parent, class_name:"Category"
+
+gem 'ancestry'を利用
+has_many items
 
 ## Comments
 
@@ -124,7 +189,8 @@ belongs_to parent, class_name:"Category"
 |user_id|references|foreign_key:true|
 
 ### Association
-enum review {good:0,normal:1,bad:2}
+
+enum review {good:0,usually:1,bad:2}
 - belongs_to user
 
 
@@ -133,21 +199,35 @@ enum review {good:0,normal:1,bad:2}
 |Column|Type|Option|
 |------|----|------|
 |provider|text|null:false|
+|token|text|null:false|
 |user_id|references|foreign_key:true|
 
 ### Association
-enum provider{facebook:0,line:1,google:2,twitter:3}
+
+enum provider{facebook:0,google:2}
 - belongs_to user
 
-## Notification
+## Notifications
 
 |Column|Type|Option|
 |------|----|------|
-|text|text|
+|text|text|null:false|
 |user_id|references|foreign_key:true|
 
 ### Association
-belongs_to user
+
+- belongs_to user
+
+## to_do_things
+
+|Column|Type|Option|
+|------|----|------|
+|text|text|null:false|
+|user_id|references|foreign_key:true|
+
+### Association
+
+- belongs_to user
 
 
 ## likes
@@ -167,14 +247,15 @@ belongs_to user
 
 |Column|Type|Option|
 |------|----|------|
-|status|string|null:false|
+|status|integer|null:false|
 |seller_id|references|foreign_key:true|
 |buyer_id|references|foreign_key:true|
 |item_id|references|foreign_key:true|
 |user_id|references|foreign_key:true|
 
 ### Association
-enum provider {出品中: 0,取引中: 1,売却済: 2}
+
+enum status {出品中: 0,取引中: 1,売却済: 2}
 - belongs_to user
 - belongs_to item
 
