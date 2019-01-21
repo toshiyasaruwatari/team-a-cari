@@ -13,7 +13,7 @@ deviseのデフォルトカラムは除く
 |last_name|string|
 |first_reading|string|
 |last_reading|string|
-|phone_number|integer|
+|phone_number|string|
 |postal_code|integer|
 |prefecture_id|integer|
 |city|string|
@@ -33,9 +33,7 @@ deviseのデフォルトカラムは除く
 - has_many sns_informations
 - has_many transactions
 - has_many credit_card
-- has_many:buyed_items,foreign_key: "buyer_id",class_name: "Item"
-- has_many:exhibition_items,->{where("buyer_id is NULL")},foreign_key: "seller_id",class_name: "Item"
-- has_many:sold_items,->{where("buyer_id is not NULL")},foreign_key: "seller_id",class_name: "Item"
+- has_many:bought_items,foreign_key: "buyer_id",class_name: "Item"
 - has_many to_do_things
 - has_many notifications
 - has_many likes
@@ -56,6 +54,7 @@ deviseのデフォルトカラムは除く
 |size_id|references|foreign_key:true|
 |prefecture_id|integer|null:false, foreign_key:true|
 |delivery_day_id|integer|null:false, foreign_key:true|
+|delivery_method_id|integer|null:false, foreign_key: true|
 |category_id|references|null:false, foreign_key:true|
 |sellre_id(販売者のuser_id)|references|foreign_key:true|
 |buyer_id(購入者のuser_id)|references|foreign_key:true|
@@ -75,6 +74,7 @@ deviseのデフォルトカラムは除く
 - belongs_to brand
 - belongs_to burden
 - belongs_to delivery_day
+- belongs_to delivery_method
 - belongs_to prefecture
 - belongs_to seller, class:name:"User"
 - belongs_to buyer, class:name:"User"
@@ -138,6 +138,17 @@ deviseのデフォルトカラムは除く
 |Column|Type|Option|
 |------|----|------|
 |days|string|null:false|
+
+### Association
+
+ - has_many items
+
+
+## delivery_methods
+
+|Column|Type|Option|
+|------|----|------|
+|method|string|null:false|
 
 ### Association
 
