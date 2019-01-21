@@ -48,13 +48,13 @@ deviseのデフォルトカラムは除く
 |name|string|null:false|
 |price|integer|null:false|
 |describe|text|null:false|
-|status_id|integer|null:false, foreign_key:true|
-|brand_id|references|foreign_key:true|
-|burden_id|integer|null:false, foreign_key:true|
+|status|integer|null:false|
+|burden|integer|null:false|
+|prefecture|integer|null:false|
+|delivery_day|integer|null:false|
+|delivery_method|integer|null:false|
 |size_id|references|foreign_key:true|
-|prefecture_id|integer|null:false, foreign_key:true|
-|delivery_day_id|integer|null:false, foreign_key:true|
-|delivery_method_id|integer|null:false, foreign_key: true|
+|brand_id|references|foreign_key:true|
 |category_id|references|null:false, foreign_key:true|
 |sellre_id(販売者のuser_id)|references|foreign_key:true|
 |buyer_id(購入者のuser_id)|references|foreign_key:true|
@@ -63,6 +63,7 @@ deviseのデフォルトカラムは除く
 
 ### Association
 
+statu, burden(配送料負担), prefecture, delivery_day, delivery_methodはenumで管理*ER図参照
 - belongs_to user
 - has_many comments
 - has_many  item_images
@@ -70,11 +71,7 @@ deviseのデフォルトカラムは除く
 - has_one transaction
 - belongs_to categories
 - belongs_to size
-- belongs_to status
 - belongs_to brand
-- belongs_to burden
-- belongs_to delivery_day
-- belongs_to delivery_method
 - belongs_to prefecture
 - belongs_to seller, class:name:"User"
 - belongs_to buyer, class:name:"User"
@@ -90,65 +87,11 @@ deviseのデフォルトカラムは除く
 - has_many items
 
 
-## prefectures
-
-|Column|Type|Option|
-|------|----|------|
-|name|string|null:false|
-
-### Association
-
-- has_many users
-- has_many items
-
-
-## statuses
-
-|Column|Type|Option|
-|------|----|------|
-|name|string|null:false|
-
-### Association
-
- - has_many items
-
 ## brands
 
 |Column|Type|Option|
 |------|----|------|
 |name|string|null:false|
-
-### Association
-
- - has_many items
-
-## burden (配送料負担)
-
-|Column|Type|Option|
-|------|----|------|
-|name|string|null:false|
-
-### Association
-
- - has_many items
-
-
-## delivery_days
-
-|Column|Type|Option|
-|------|----|------|
-|days|string|null:false|
-
-### Association
-
- - has_many items
-
-
-## delivery_methods
-
-|Column|Type|Option|
-|------|----|------|
-|method|string|null:false|
 
 ### Association
 
