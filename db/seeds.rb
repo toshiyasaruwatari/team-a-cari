@@ -8,6 +8,34 @@
 
 require "csv"
 
-CSV.foreach('db/item.csv') do |row|
-  Item.create(id: row[0], name: row[1], status: row[2])
+CSV.foreach('db/testdata.csv') do |row|
+  Item.create(id: row[0], name: row[1], price: row[2],describe: row[3],status: row[4],delivery_fee: row[5],region: row[6],transport_day: row[7],seller_id: row[8],buyer_id: row[9],category_id: row[10],brand_id: row[11], size_id: row[12])
 end
+
+
+
+
+
+
+# ↓ Dont't touch
+
+# サイズ
+#CSV.foreach('db/size.csv') do |row|
+ # Size.create(id: row[0], name: row[1])
+#end
+
+
+#カテゴリー
+#CSV.foreach('db/category.csv') do |row|
+ # Category.create(id: row[0], name: row[1], ancestry: row[2])
+#end
+
+#ブランド
+#CSV.foreach('db/brand.csv') do |row|
+ # Brand.create(id: row[0], name: row[1])
+#end
+
+#アイテム
+#CSV.foreach('db/test.csv') do |row|
+ # Item.create(id: row[0], name: row[1], price: row[2], describe: row[3], status: row[4], delivery_fee: row[5], region: row[6], transport_day: row[7], seller_id: row[8],buyer_id: row[9],category_id: row[10], brand_id: row[11], size_id: row[12])
+#end

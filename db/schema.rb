@@ -10,12 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190120073601) do
+ActiveRecord::Schema.define(version: 20190122054043) do
 
   create_table "brands", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -37,9 +35,9 @@ ActiveRecord::Schema.define(version: 20190120073601) do
     t.integer "price", null: false
     t.text "describe", null: false
     t.integer "status", null: false
-    t.integer "delivery_fee"
-    t.integer "region", null: false
-    t.integer "transport_day", null: false
+    t.integer "burden"
+    t.integer "prefecture", null: false
+    t.integer "delivery_day", null: false
     t.integer "seller_id", null: false
     t.integer "buyer_id", null: false
     t.datetime "created_at", null: false
@@ -47,6 +45,7 @@ ActiveRecord::Schema.define(version: 20190120073601) do
     t.bigint "category_id", null: false
     t.bigint "brand_id", null: false
     t.bigint "size_id", null: false
+    t.integer "delivery_method", null: false
     t.index ["brand_id"], name: "index_items_on_brand_id"
     t.index ["category_id"], name: "index_items_on_category_id"
     t.index ["size_id"], name: "index_items_on_size_id"
@@ -54,8 +53,6 @@ ActiveRecord::Schema.define(version: 20190120073601) do
 
   create_table "sizes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
