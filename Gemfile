@@ -66,6 +66,7 @@ gem 'jquery-rails'
 gem 'fog-aws'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'gretel'
 
 group :production do
   gem 'unicorn'
