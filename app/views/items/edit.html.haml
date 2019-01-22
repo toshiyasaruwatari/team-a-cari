@@ -89,7 +89,7 @@
         %h3.prof__mypage-nav-head 設定
         %ul.prof__mypage-nav-list
           %li
-            = link_to root_path, class: 'prof__mypage-nav-list-item' do
+            = link_to edit_user_path(current_user), class: 'prof__mypage-nav-list-item' do
               プロフィール
               = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
           %li
