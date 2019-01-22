@@ -46,68 +46,25 @@
           type: 'bullets',
         },
     });
+  %section.pickup-container
+    - @categories.each do |category|
+      .pickup-head ピックアップカテゴリー
+
+      %section.item-box-container
+        .text-center
+          = link_to root_path do
+            = "#{category.name}新着アイテム"
+        = render partial: "pickup_category", locals: { items: @items, image: @image}
 
   %section.pickup-container
-    .pickup-head ピックアップカテゴリー
+    - @brands.each do |brand|
+      .pickup-head ピックアップブランド
 
-    %section.item-box-container
-      .text-center
-        = link_to root_path do
-          レディース新着アイテム
-
-      = render 'pickup'
-
-    %section.item-box-container
-      .text-center
-        = link_to root_path do
-          メンズ新着アイテム
-
-      = render 'pickup'
-
-    %section.item-box-container
-      .text-center
-        = link_to root_path do
-          ベビー・キッズ新着アイテム
-
-      = render 'pickup'
-
-    %section.item-box-container
-      .text-center
-        = link_to root_path do
-          コスメ・香水・美容新着アイテム
-
-      = render 'pickup'
-
-  %section.pickup-container
-    .pickup-head ピックアップブランド
-
-    %section.item-box-container
-      .text-center
-        = link_to root_path do
-          シャネル新着アイテム
-
-      = render 'pickup'
-
-    %section.item-box-container
-      .text-center
-        = link_to root_path do
-          ルイ・ヴィトン新着アイテム
-
-      = render 'pickup'
-
-    %section.item-box-container
-      .text-center
-        = link_to root_path do
-          シュプリーム新着アイテム
-
-      = render 'pickup'
-
-    %section.item-box-container
-      .text-center
-        = link_to root_path do
-          ナイキ新着アイテム
-
-      = render 'pickup'
+      %section.item-box-container
+        .text-center
+          = link_to root_path do
+            = "#{brand.name}新着アイテム"
+        = render partial: "pickup_brand", locals: { items: @items, image: @image}
 
 %footer
   = image_tag (asset_path "mercari.png")

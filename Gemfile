@@ -68,6 +68,8 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'seed-fu'
 gem 'config'
+gem 'ancestry'
+
 
 group :production do
   gem 'unicorn'
