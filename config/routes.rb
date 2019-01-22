@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'items#index'
+  resources :items, only: [:index, :new, :create]
 
   get '/a', to: 'items#card'
   get '/b', to: 'items#card_add'
@@ -10,7 +11,6 @@ Rails.application.routes.draw do
   get '/f', to: 'items#item_buy'
   get '/g', to: 'items#logout'
   get '/h', to: 'items#mypage'
-  get '/i', to: 'items#new'
   get '/j', to: 'items#membership'
 
 end
