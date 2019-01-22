@@ -72,7 +72,7 @@
           ************4242
           %br/
           00 / 00
-        = image_tag '/assets/master-card.svg', class: 'buy__user-info-card'
+        = image_tag (asset_path "master-card.svg"), class: 'buy__user-info-card'
         %p
         = link_to root_path, class: 'buy__user-info-fix' do
           %span 変更する

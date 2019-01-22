@@ -3,7 +3,7 @@
   .header-inner
     .upper-box
       = link_to root_path, class: "upper-box__logo" do
-        = image_tag("/assets/logo.png")
+        = image_tag (asset_path "logo.png")
       %input.upper-box__search{placeholder: "キーワードから探す", type: "text"}
       = fa_icon "search"
     .under-box
@@ -24,7 +24,7 @@
           %ul.header-user-nav
             %li
               = link_to root_path, class: "icons" do
-                %img.user-icon{src: "/assets/member_photo_noimage_thumb.png"}
+                = image_tag (asset_path "member_photo_noimage_thumb.png"), class: "user-icon"
                 %span.icon-text
                   マイページ
             %li
@@ -47,16 +47,16 @@
   .item-detail-container__main-content
     .item-photo
       .main-image
-        = image_tag(asset_path "cloth3.jpg")
+        = image_tag (asset_path "cloth3.jpg")
       %ul.sub-image
         %li
-          = image_tag(asset_path "cloth3.jpg")
+          = image_tag (asset_path "cloth3.jpg")
         %li
-          = image_tag(asset_path "member_photo_noimage_thumb.png")
+          = image_tag (asset_path "member_photo_noimage_thumb.png")
         %li
-          = image_tag(asset_path "cloth3.jpg")
+          = image_tag (asset_path "cloth3.jpg")
         %li
-          = image_tag(asset_path "member_photo_noimage_thumb.png")
+          = image_tag (asset_path "member_photo_noimage_thumb.png")
 
     %table.item-detail-table
       %tbody
@@ -158,7 +158,7 @@
           .message-user
             %figure
               .message-user-unknown
-                = image_tag asset_path("member_photo_noimage_thumb"), class: "message-user-photo"
+                = image_tag (asset_path "member_photo_noimage_thumb.png"), class: "message-user-photo"
               %figcaption.bold
 
           .message-body
@@ -173,7 +173,7 @@
           .message-user
             %figure
               .message-user-unknown
-                = image_tag asset_path("member_photo_noimage_thumb"), class: "message-user-photo"
+                = image_tag (asset_path "member_photo_noimage_thumb.png"), class: "message-user-photo"
               %figcaption.bold
 
           .message-body
@@ -229,5 +229,4 @@
 
     = render "other"
 
-
-
+= image_tag (asset_path "mercari.png")

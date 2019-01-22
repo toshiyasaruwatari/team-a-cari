@@ -1,0 +1,21 @@
+.items-box-content
+
+  - items.each do |item|
+    %section.items-box
+      = link_to root_path do
+        = image_tag image.image
+        .items-box-body
+          .items-box-name
+            = item.name
+          .items-box-num
+            .items-box-price
+              = item.price
+            .items-box-likes
+              = fa_icon 'heart-o'
+              %span 2
+            .item-box-tax (税込)
+
+
+.view-all
+  = link_to root_path do
+    すべての商品を見る
