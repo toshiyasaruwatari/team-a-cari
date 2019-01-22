@@ -3,7 +3,7 @@
   - items.each do |item|
     %section.items-box
       = link_to root_path do
-        = image_tag image.image
+        = image_tag item.item_images.first.image
         .items-box-body
           .items-box-name
             = item.name
