@@ -47,24 +47,52 @@
         },
     });
   %section.pickup-container
-    - @categories.each do |category|
-      .pickup-head ピックアップカテゴリー
+    .pickup-head ピックアップカテゴリー
 
-      %section.item-box-container
-        .text-center
-          = link_to root_path do
-            = "#{category.name}新着アイテム"
-        = render partial: "pickup_category", locals: { items: @items, image: @image}
+    %section.item-box-container
+      .text-center
+        = link_to root_path do
+          レディース新着アイテム
+      = render partial: "pickup_category", locals: { items: @ladies_items }
 
-  %section.pickup-container
-    - @brands.each do |brand|
-      .pickup-head ピックアップブランド
+    %section.item-box-container
+      .text-center
+        = link_to root_path do
+          メンズ新着アイテム
+      = render partial: "pickup_category", locals: { items: @mens_items }
 
-      %section.item-box-container
-        .text-center
-          = link_to root_path do
-            = "#{brand.name}新着アイテム"
-        = render partial: "pickup_brand", locals: { items: @items, image: @image}
+    %section.item-box-container
+      .text-center
+        = link_to root_path do
+          ベビー・キッズ新着アイテム
+      = render partial: "pickup_category", locals: { items: @kids_items }
+
+
+    .pickup-head ピックアップブランド
+
+    %section.item-box-container
+      .text-center
+        = link_to root_path do
+          シャネル新着アイテム
+      = render partial: "pickup_category", locals: { items: @chanel_items}
+
+    %section.item-box-container
+      .text-center
+        = link_to root_path do
+          ルイヴィトン新着アイテム
+      = render partial: "pickup_category", locals: { items: @lui_items}
+
+    %section.item-box-container
+      .text-center
+        = link_to root_path do
+          シュプリーム新着アイテム
+      = render partial: "pickup_category", locals: { items: @sup_items}
+
+    %section.item-box-container
+      .text-center
+        = link_to root_path do
+          ナイキ新着アイテム
+      = render partial: "pickup_category", locals: { items: @nike_items}
 
 %footer
   = image_tag (asset_path "mercari.png")
