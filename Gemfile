@@ -66,10 +66,10 @@ gem 'jquery-rails'
 gem 'fog-aws'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'gretel'
 gem 'seed-fu'
 gem 'config'
 gem 'ancestry'
-
 
 group :production do
   gem 'unicorn'
