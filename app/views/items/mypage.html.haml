@@ -1,5 +1,19 @@
 .mypage-container
   %header
+
+    = render 'modules/header_log_in'
+
+  %nav.bread-crumbs
+    %ul
+      %li{itemscope: true, itemtype: "#"}
+        = link_to root_path, itemprop: "url" do
+          %span{itemprop: "title"}
+            メルカリ
+        = fa_icon "chevron-right"
+      %li{itemscope: true, itemtype: "#"}
+        %span{itemprop: "title"}
+          マイページ
+
     .header-inner
       .upper-box
         = link_to root_path, class: "upper-box__logo" do
@@ -45,6 +59,7 @@
   %nav.bread-crumbs
     - breadcrumb :mypage
     = breadcrumbs class: "breadcrumbs", style: :ul, separator: " #{content_tag(:i, '', :class=>'fa fa-chevron-right')} "
+
 
   %main.l-container.clearfix
     = render 'side/side_bar'
