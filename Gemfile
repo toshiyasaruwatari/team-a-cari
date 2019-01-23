@@ -44,6 +44,8 @@ group :development, :test do
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano3-unicorn'
+  gem 'rspec-rails'
+  gem 'factory_bot'
 end
 
 group :development do
@@ -66,10 +68,10 @@ gem 'jquery-rails'
 gem 'fog-aws'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'gretel'
 gem 'seed-fu'
 gem 'config'
 gem 'ancestry'
-
 
 group :production do
   gem 'unicorn'
