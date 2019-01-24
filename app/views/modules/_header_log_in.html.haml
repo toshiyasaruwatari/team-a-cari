@@ -1,0 +1,33 @@
+.header-inner
+  .upper-box
+    = link_to root_path, class: "upper-box__logo" do
+      = image_tag (asset_path "logo.png")
+    %input.upper-box__search{placeholder: "キーワードから探す", type: "text"}
+    = fa_icon "search"
+  .under-box
+    .under-box__left
+      %ul.l-left
+        %li
+          = link_to root_path, class: "from-category" do
+            カテゴリーから探す
+        %li
+          = link_to root_path, class: "from-bland" do
+            ブランドから探す
+    .under-box__right
+      .l-right
+        %ul.header-user-nav
+          %li
+            = link_to root_path, class: "icons" do
+              %img.user-icon{src: "assets/logo.mini.png"}
+              %span.icon-text
+                マイページ
+          %li
+            = link_to root_path, class: "icons" do
+              = fa_icon "bell-o"
+              %span.icon-text
+                お知らせ
+          %li
+            = link_to root_path, class: "icons" do
+              = fa_icon "check"
+              %span.icon-text
+                やることリスト
