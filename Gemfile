@@ -46,10 +46,10 @@ group :development, :test do
   gem 'capistrano3-unicorn'
   gem 'rspec-rails'
   gem 'factory_bot_rails'
+  gem 'faker'
 end
 
 group :test do
-  gem 'faker'
   gem 'factory_bot'
 end
 
