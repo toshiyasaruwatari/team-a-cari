@@ -37,7 +37,7 @@ class ItemsController < ApplicationController
   def update
   end
 
-  def destroy
+  def logout
   end
 
   def buy

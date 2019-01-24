@@ -16,22 +16,18 @@ Rails.application.routes.draw do
 
   root to: 'items#index'
 
-  resources :items, only: [:index, :show, :new, :create, :edit, :update, :destroy]
-  get 'items/:id/buy', to: 'items#buy'
+  resources :users, only: [:show, :edit, :update, :destroy] do
+    collection do
+      get ':id/identify', to: 'users#identify'
+      get ':id/pay_way', to: 'users#pay_way'
+      get ':idd/add_card', to: 'users#add_card'
+      get ':id/logout', to: 'users#logout'
+    end
+  end
 
-  resources :users, only: [:show, :edit, :update, :destroy]
-  get 'users/:id/identify', to: 'users#identify'
-  get 'users/:id/pay_way', to: 'users#pay_way'
-  get 'users/:id/add_card', to: 'users#add_card'
-
-  # get '/a', to: 'items#card'
-  # get '/b', to: 'items#card_add'
-  # get '/c', to: 'items#detail'
-  # get '/d', to: 'items#edit'
-  # get '/e', to: 'items#identification'
-  # get '/f', to: 'items#item_buy'
-  # get '/g', to: 'items#logout'
-  # get '/h', to: 'items#mypage'
-  # get '/i', to: 'items#new'
-
+  resources :items, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
+    collection do
+      get 'buy', to: 'items#buy'
+    end
+  end
 end
