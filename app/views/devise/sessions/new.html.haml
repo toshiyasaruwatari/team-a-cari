@@ -1,10 +1,11 @@
 .login__container
   = render "modules/header_logo_only"
+
   %main.signin__main
     .login__content
       .login__content--signin
         %p アカウントをお持ちでない方はこちら
-        = link_to "新規会員登録"
+        = link_to "新規会員登録", new_user_registration_path
       .login__main--inner
         %button#facebook-login.btn-sns
           %i.fa.fa-facebook-official
@@ -12,14 +13,14 @@
         %button#google-login.btn-sns
           %i.fa.fa-google-plus
           Googleでログイン
-      = form_with url: "rooto_path", method: "POST" do |f|
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
         .login__main--inner
           .login__form
-            = f.email_field :email, class: "login__form--default login__email"
+            = f.email_field :email, placeholder: 'メールアドレス', class: "login__form--default login__email"
           .login__form
-            = f.password_field :password, class: "login__form--default login__pass"
+            = f.password_field :password, placeholder: 'パスワード', class: "login__form--default login__pass"
           .g-recaptcha{"data-sitekey" => "6LcAJ4oUAAAAAPJ-gRLKEkhePTBcBWT4tklVb6wi"}
-          = f.submit value: "ログアウト", class: "login__button login__form--default"
-      = link_to "パスワードをお忘れの方", root_path , class: "forget__password"
+          = f.submit value: "ログイン", class: "login__button login__form--default"
+      = link_to "パスワードをお忘れの方", edit_user_password_path, class: "forget__password"
 .poricy__img--content
-  = image_tag ("/assets/poricy.png")
+  = image_tag (asset_path "poricy.png")

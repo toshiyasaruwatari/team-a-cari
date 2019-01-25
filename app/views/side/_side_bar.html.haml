@@ -2,7 +2,7 @@
   %nav.prof__mypage-nav
     %ul.prof__mypage-nav-list
       %li.link__hover--action
-        = link_to root_path, class: 'prof__mypage-nav-list-item' do
+        = link_to "/users/show", class: 'prof__mypage-nav-list-item' do
           マイページ
           = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
       %li.link__hover--action
@@ -18,7 +18,7 @@
           いいね！一覧
           = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
       %li.link__hover--action
-        = link_to root_path, class: 'prof__mypage-nav-list-item' do
+        = link_to "/items/new", class: 'prof__mypage-nav-list-item' do
           出品する
           = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
       %li.link__hover--action
@@ -80,7 +80,7 @@
           住所変更
           = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
       %li.link__hover--action
-        = link_to root_path, class: 'prof__mypage-nav-list-item' do
+        = link_to "/users/:id/pay_way", class: 'prof__mypage-nav-list-item' do
           支払い方法
           = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
       %li.link__hover--action
@@ -88,7 +88,7 @@
           メール/パスワード
           = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
       %li.link__hover--action
-        = link_to root_path, class: 'prof__mypage-nav-list-item' do
+        = link_to "/users/:id/identify", class: 'prof__mypage-nav-list-item' do
           本人情報
           = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
       %li.link__hover--action
@@ -96,6 +96,6 @@
           電話番号の確認
           = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
       %li.link__hover--action
-        = link_to root_path, class: 'prof__mypage-nav-list-item' do
+        = link_to "/users/:id/logout", class: 'prof__mypage-nav-list-item' do
           ログアウト
           = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
