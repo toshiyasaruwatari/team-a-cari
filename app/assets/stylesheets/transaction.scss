@@ -22,15 +22,15 @@
     .status__default {
       font-weight: bold;
     }
+    }
+    }
 }
-}
-  }
 
 .transaction__contents--lists {
    background-color: #fff;
   .transaction__list {
     display: block;
-    .transaction__list--default {
+    &--default {
       padding: 160px 0 60px;
       background: url(/assets/images/custom.svg);
       background-repeat: no-repeat;
@@ -39,8 +39,8 @@
       margin: 0 auto;
       font-size: 16px;
       color: #ccc;
-}
-}
+    }
+    }
 }
 
 .status__select {
