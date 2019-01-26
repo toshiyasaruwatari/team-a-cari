@@ -39,14 +39,14 @@ protect_from_forgery except: :pay
   :amount => @item.price,
   :customer => current_user.pay_id,
   :currency => 'jpy',
+  :capture => 'false'
 )
-  redirect_to root_path
+if charge.paid == true
+    @item.buyer_id = current_user.id
+    @item.save
+  end
+  redirect_to root_path, notice: "決済が完了しました。"
   end
 end
-=begin
-charge = Payjp::Charge.retrieve(current_user.pay_id)
-charge.capture
-  binding.pry
-  @item.buyer_id = current_user.id
-  @item.save
-=end
+    #items の購入stsを変える ifでstsが購入ずみならsoldつける
+
