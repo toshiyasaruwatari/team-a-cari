@@ -37,5 +37,8 @@ Rails.application.routes.draw do
         post '/pay', to: "cards#pay"
       end
   end
+  get '/trade/sell', to: "items#trade_sell"
+  get '/trade/now', to: "items#trade_now"
+  get '/trade/sold', to: "items#trade_sold"
 end
 
