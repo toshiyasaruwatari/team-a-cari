@@ -96,6 +96,6 @@
           電話番号の確認
           = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
       %li.link__hover--action
-        = link_to root_path, class: 'prof__mypage-nav-list-item' do
+        = link_to "/users/:id/logout", class: 'prof__mypage-nav-list-item' do
           ログアウト
           = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
