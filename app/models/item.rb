@@ -3,8 +3,17 @@ class Item < ApplicationRecord
   belongs_to :brand
   belongs_to :size
   has_many   :item_images
+  belongs_to :user, optional: true
+  belongs_to :brand, optional: true
+  belongs_to :seller_id, class_name: "User", optional: true
+  belongs_to :buyer_id, class_name: "User", optional: true
+  has_one :size
+  has_many   :item_images, dependent: :destroy
+  accepts_nested_attributes_for :item_images
+
   enum status:{"新品、未使用": 1, "未使用に近い": 2, "目立った傷や汚れなし": 3, "やや傷や汚れあり": 4, "傷や汚れあり": 5, "全体的に状態が悪い": 6}
   enum burden:{"送料込み(出品者負担)":1, "着払い(購入者負担)":2}
+  enum delivery_method:{"未定": 1, "らくらくメルカリ便": 2, "ゆうメール": 3, "レターパック": 4, "普通郵便(定形、定形外)": 5, "クロネコヤマト": 6, "ゆうパック": 7, "クリックポスト": 8, "ゆうパケット": 9}
   enum  prefecture: {
     "北海道": 1,"青森県": 2,"岩手県": 3,"宮城県": 4,"秋田県": 5,"山形県": 6,"福島県": 7,
     "茨城県": 8,"栃木県": 9,"群馬県": 10,"埼玉県": 11,"千葉県": 12,"東京都": 13,"神奈川県": 14,
