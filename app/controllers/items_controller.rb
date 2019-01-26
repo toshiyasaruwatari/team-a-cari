@@ -3,10 +3,24 @@ class ItemsController < ApplicationController
     @categories = Category.roots.limit(4)
     @brands = Brand.limit(3)
     @items = Item.all
-    @image = ItemImage.find(1)
   end
 
   def new
+    @item = Item.new
+    @item.item_images.build
+    respond_to do |format|
+      format.html
+      format.json { @childrens = Category.children_of(params[:parent_id]) }
+    end
+  end
+
+  def create
+    @item = Item.new(item_params)
+    if @item.save
+      redirect_to action: 'index'
+    else
+      redirect_to action: 'new'
+    end
   end
 
   def card
@@ -34,6 +48,11 @@ class ItemsController < ApplicationController
   end
 
   def membership
+  end
+
+  private
+  def item_params
+    params.require(:item).permit(:name, :price, :describe, :status, :burden, :delivery_method, :prefecture, :delivery_day, :seller_id, :category_id, images_attributes: [:image])
   end
 
 end
