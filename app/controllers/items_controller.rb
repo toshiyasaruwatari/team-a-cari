@@ -23,6 +23,21 @@ class ItemsController < ApplicationController
 
   end
 
+
+  def trade_sell
+  end
+
+  def trade_now
+  end
+
+  def trade_sold
+  end
+
+  def pay_way
+  end
+  def show
+  end
+
   def new
     @item = Item.new
     @item.item_images.build

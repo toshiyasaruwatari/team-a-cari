@@ -14,7 +14,18 @@ Rails.application.routes.draw do
 
   resources :items, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
     collection do
-      get ':id/buy', to: 'items#buy'
+      get '/:id/buy_confirm', to: 'cards#buy_confirm'
+      post '/:id/buy', to: 'cards#buy'
     end
   end
+  resources :users, only:[:show] do
+    resources :cards, only:[:index,:new, :pay]
+      collection do
+        post '/pay', to: "cards#pay"
+      end
+  end
+  get '/trade/sell', to: "items#trade_sell"
+  get '/trade/now', to: "items#trade_now"
+  get '/trade/sold', to: "items#trade_sold"
 end
+
