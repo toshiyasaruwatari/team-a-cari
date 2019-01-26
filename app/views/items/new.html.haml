@@ -8,17 +8,17 @@
         .title
           商品の情報を入力
         .upload
-          .upload-head
+          .upload__head
             出品画像
-          .upload-need
+          .upload__need
             必須
-          .upload-description
+          .upload__description
             最大10枚までアップロードできます
-          .upload-drop.clearfix
+          .upload__drop.clearfix
             .sell-upload-items-container
               .sell-upload-items.have-item-0
                 %ul
-            = f.label :image, class: "upload-drop__box have-item-0" do
+            = f.label :image, class: "upload__drop-box have-item-0" do
               = f.file_field :image, id: "item_image", class: "hidden", multiple: true
               %pre.drop-text
                 ドラッグアンドドロップ

@@ -23,6 +23,7 @@ class ItemsController < ApplicationController
 
   end
 
+
   def trade_sell
   end
 
@@ -42,7 +43,7 @@ class ItemsController < ApplicationController
     @item.item_images.build
     respond_to do |format|
       format.html
-      format.json { @childrens = Category.children_of(params[:parent_id]) }
+      format.json { @children = Category.children_of(params[:parent_id]) }
     end
   end
 

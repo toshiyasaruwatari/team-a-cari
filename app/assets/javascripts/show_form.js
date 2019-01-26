@@ -2,32 +2,30 @@ $(document).on('turbolinks:load', function() {
 
   $('.select-burden').on('change', function(){
 
-    let deliveryWay = document.getElementById('d-method');
-
     let burdenForm = $('select.select-burden > option:selected').val();
 
+    let deliveryMethodForm = $('#d-method').get(0);
+
     if (burdenForm !== "") {
-      deliveryWay.style.cssText = "display: block;";
+      deliveryMethodForm.style.cssText = 'display: block;';
     } else {
-      deliveryWay.style.cssText = "display: none;";
+      deliveryMethodForm.style.cssText = 'display: none;';
     }
   });
 
+  $(document).on('change', '.third-category', function(){
 
-  $(document).on('change', '.sub-sub-category', function(){
+    let brandForm = $('#brand-form').get(0);
+    let sizeForm = $('#size-form').get(0);
 
-    let brandForm = document.getElementById('brand-form');
-    brandForm.style.cssText = "display: block;";
-
-    let sizeForm = document.getElementById('size-form');
-    sizeForm.style.cssText = "display: block;";
-
+    brandForm.style.cssText = 'display: block;';
+    sizeForm.style.cssText = 'display: block;';
   });
 
   $('.top-category').on('change', function(){
 
-    let sizeForm = document.getElementById('size-form');
-    sizeForm.style.cssText = "display: none;";
+    let sizeForm = $('#size-form').get(0);
+    sizeForm.style.cssText = 'display: none;';
 
   });
 

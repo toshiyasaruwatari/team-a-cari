@@ -20,12 +20,12 @@ $(document).on('turbolinks:load', function() {
 
       $('.have-item-0').removeClass('have-item-0').addClass('have-item-1');
 
-      $(".sell-upload-items ul").append(appendList())
+      $(".sell-upload-items ul").append(appendListHTML())
 
-      function appendList() {
+      function appendListHTML() {
         let html =
         `<li class="sell-upload-item" id="preview" >
-            <div class="sell-upload-button">
+            <div class="sell-upload-item__button">
               <a class="sell-upload-edit">編集</a><a class="sell-upload-delete">削除</a>
             </div>
         </li>`
