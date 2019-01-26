@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
 
   def index
+
     @categories = Category.all
 
     ladies_category = Category.find(1)
@@ -21,14 +22,26 @@ class ItemsController < ApplicationController
     @nike_items = Item.includes(:item_images).where(brand_id: 2).order("created_at DESC").limit(4)
 
   end
-
-  def show
-  end
-
+  
   def new
+    @item = Item.new
+    @item.item_images.build
+    respond_to do |format|
+      format.html
+      format.json { @childrens = Category.children_of(params[:parent_id]) }
+    end
   end
 
   def create
+    @item = Item.new(item_params)
+    if @item.save
+      redirect_to action: 'index'
+    else
+      redirect_to action: 'new'
+    end
+  end
+  
+  def show
   end
 
   def edit
@@ -41,6 +54,11 @@ class ItemsController < ApplicationController
   end
 
   def buy
+  end
+
+  private
+  def item_params
+    params.require(:item).permit(:name, :price, :describe, :status, :burden, :delivery_method, :prefecture, :delivery_day, :category_id, images_attributes: [:image])
   end
 
 end
