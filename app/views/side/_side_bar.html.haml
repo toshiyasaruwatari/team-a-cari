@@ -80,7 +80,7 @@
           住所変更
           = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
       %li.link__hover--action
-        = link_to root_path, class: 'prof__mypage-nav-list-item' do
+        = link_to "/users/#{current_user.id}/cards", class: 'prof__mypage-nav-list-item' do
           支払い方法
           = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
       %li.link__hover--action

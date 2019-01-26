@@ -22,6 +22,8 @@ class ItemsController < ApplicationController
 
   end
 
+  def pay_way
+  end
   def show
   end
 

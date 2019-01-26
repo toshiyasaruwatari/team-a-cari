@@ -7,12 +7,12 @@
     %section.buy__content-buy-item
       .buy-content-item-inner
         %h3.buy-item-image
-          = image_tag (asset_path 'm52773408832_1.jpg'), class: 'buy__lazyloaded'
+          = image_tag @item.item_images.first.image, class: 'buy__lazyloaded'
         %p.buy__item-name.bold 商品名
         = form_with class: 'buy__buy-form'
         .buy__buy-form
           %p.buy__price-ja.bold
-            ¥ 0
+            = @item.price
             %span.item-shipping-fee.f14.bold 送料込み
           %ul.buy__buy-accordion
             %li.buy__accordion-parent
@@ -46,9 +46,11 @@
           %ul.buy__price-table
             %li.buy__price-row.bold
               .buy__price-cell 支払い金額
-              %span.buy__price-cell ¥ 0
-          .button.btn-default.btn-red.bold
-            購入する
+              %span.buy__price-cell
+                = @item.price
+          = link_to "/items/#{@item.id}/buy", method: "POST" do
+            .button.btn-default.btn-red.bold
+              購入する
 
     %section.buy__content-user
       .buy__content-user-inner

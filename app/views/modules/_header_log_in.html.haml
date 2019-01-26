@@ -17,7 +17,7 @@
       .l-right
         %ul.header-user-nav
           %li
-            = link_to root_path, class: "icons" do
+            = link_to user_path(current_user.id), class: "icons" do
               = image_tag (asset_path "member_photo_noimage_thumb.png"), class: "user-icon"
               %span.icon-text
                 マイページ
