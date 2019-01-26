@@ -1,16 +1,20 @@
 Rails.application.routes.draw do
   devise_for :users
+
   root to: 'items#index'
 
-  get '/a', to: 'items#card'
-  get '/b', to: 'items#card_add'
-  get '/c', to: 'items#detail'
-  get '/d', to: 'items#edit'
-  get '/e', to: 'items#identification'
-  get '/f', to: 'items#item_buy'
-  get '/g', to: 'items#logout'
-  get '/h', to: 'items#mypage'
-  get '/i', to: 'items#new'
-  get '/j', to: 'items#membership'
+  resources :users, only: [:show, :edit, :update, :destroy] do
+    collection do
+      get ':id/identify', to: 'users#identify'
+      get ':id/pay_way', to: 'users#pay_way'
+      get ':id/add_card', to: 'users#add_card'
+      get ':id/logout', to: 'users#logout'
+    end
+  end
 
+  resources :items, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
+    collection do
+      get ':id/buy', to: 'items#buy'
+    end
+  end
 end

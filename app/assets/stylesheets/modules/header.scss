@@ -170,6 +170,7 @@ header {
       display: inline-block;
       font-size: 1.4rem;
       line-height: 1.2;
+      padding: 0 0.5rem;
       a {
         text-decoration: none;
         color: #000;
@@ -179,6 +180,9 @@ header {
         font-size: 0.9rem;
         color: #888;
       }
+    }
+    li:last-child {
+      font-weight: bold;
     }
   }
 }

@@ -44,6 +44,13 @@ group :development, :test do
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano3-unicorn'
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
+  gem 'faker'
+end
+
+group :test do
+  gem 'factory_bot'
 end
 
 group :development do
@@ -53,6 +60,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'faker'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -66,10 +74,10 @@ gem 'jquery-rails'
 gem 'fog-aws'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'gretel'
 gem 'seed-fu'
 gem 'config'
 gem 'ancestry'
-
 
 group :production do
   gem 'unicorn'
