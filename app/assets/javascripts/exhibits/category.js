@@ -3,9 +3,9 @@ $(document).on('turbolinks:load', function() {
   $('.top-category').change(function(){
 
     $('.sub-category').remove();
-    $('.sub-sub-category').remove();
+    $('.third-category').remove();
 
-    function subCategory(){
+    function buildSubCategoryHTML(){
       let html =
         `<div class= "category-wrap sub-category" >
           <select class="select-category sub-category name="item[category]">
@@ -15,15 +15,15 @@ $(document).on('turbolinks:load', function() {
       return html;
     }
 
-    function appendOptions(children){
+    function appendOptionsHTML(child){
       let html =
-                `<option value="${children.id}">${children.name}</option>`
+                `<option value="${child.id}">${child.name}</option>`
       return html;
     }
 
     let topCategory = $('.top-category').val();
 
-    $('.category-form').append(subCategory());
+    $('.category-form').append(buildSubCategoryHTML());
 
     if(topCategory !== ""){
       $.ajax({
@@ -32,9 +32,9 @@ $(document).on('turbolinks:load', function() {
         data: { parent_id: topCategory },
         dataType: 'json'
       })
-      .done(function(childrens){
-        childrens.forEach(function(children){
-          $('.select-category.sub-category').append(appendOptions(children))
+      .done(function(children){
+        children.forEach(function(child){
+          $('.select-category.sub-category').append(appendOptionsHTML(child))
         });
       })
       .fail(function() {
@@ -42,33 +42,33 @@ $(document).on('turbolinks:load', function() {
       });
     }else{
       $('.sub-category').remove();
-      $('.sub-sub-category').remove();
+      $('.third-category').remove();
     }
   });
 
   $(document).on('change', '.sub-category', function(){
 
-    $('.sub-sub-category').remove();
+    $('.third-category').remove();
 
-    function subSubCategory(){
+    function buildThirdCategoryHTML(){
       let html =
-        `<div class= "category-wrap sub-sub-category" >
-          <select class="select-category sub-sub-category name="item[category]">
+        `<div class= "category-wrap third-category" >
+          <select class="select-category third-category name="item[category]">
             <option value>---</option>
           <i class="fa fa-angle-down category-icon"></i>
         </div>`
       return html;
     }
 
-    function addOptions(children){
+    function addOptionsHTML(child){
       let html =
-                `<option value="${children.id}">${children.name}</option>`
+                `<option value="${child.id}">${child.name}</option>`
       return html;
     }
 
     let subCategory = $('select.sub-category').val();
 
-    $('.category-form').append(subSubCategory());
+    $('.category-form').append(buildThirdCategoryHTML());
 
     if(subCategory !== ""){
       $.ajax({
@@ -78,9 +78,9 @@ $(document).on('turbolinks:load', function() {
         data: { parent_id: subCategory },
         dataType: 'json'
       })
-      .done(function(childrens){
-        childrens.forEach(function(children){
-          $('select.sub-sub-category').append(addOptions(children))
+      .done(function(children){
+        children.forEach(function(child){
+          $('select.third-category').append(addOptionsHTML(child))
         });
       })
       .fail(function() {
@@ -90,7 +90,7 @@ $(document).on('turbolinks:load', function() {
   });
 
   $('.exhibit-button').on('click', function(){
-    let categoryId = $('select.sub-sub-category').val();
+    let categoryId = $('select.third-category').val();
     $('select.top-category > option:selected').attr('value',categoryId)
   });
 

@@ -78,6 +78,7 @@ gem 'gretel'
 gem 'seed-fu'
 gem 'config'
 gem 'ancestry'
+gem 'payjp'
 
 group :production do
   gem 'unicorn'

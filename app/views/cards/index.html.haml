@@ -17,7 +17,7 @@
             .default__card--list-text
               %h3 クレジットカード一覧
         %section.credit__add__wrapper--button
-          = link_to root_path, class: "link__add__card" do
+          = link_to new_user_card_path(current_user.id), class: "link__add__card" do
             .credit__add__content--button
               %i.fa.fa-credit-card
               クレジットカードを追加する
