@@ -1,7 +1,7 @@
 class Item < ApplicationRecord
   belongs_to :user,optional: true
   belongs_to :brand
-  belongs_to :size
+  belongs_to :item
   has_many   :item_images
   belongs_to :user, optional: true
   belongs_to :brand, optional: true

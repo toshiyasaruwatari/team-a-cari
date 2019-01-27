@@ -42,10 +42,12 @@ protect_from_forgery except: :pay
   :capture => 'false'
 )
 if charge.paid == true
-    @item.buyer_id = current_user.id
+    @item[:buyer_id] = current_user.id
     @item.save
-  end
   redirect_to root_path, notice: "決済が完了しました。"
+else
+  render :buy, alert: "予期せぬエラーが発生しました。"
+  end
   end
 end
     #items の購入stsを変える ifでstsが購入ずみならsoldつける

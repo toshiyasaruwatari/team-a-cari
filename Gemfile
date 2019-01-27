@@ -79,6 +79,9 @@ gem 'seed-fu'
 gem 'config'
 gem 'ancestry'
 gem 'payjp'
+gem "recaptcha", require: "recaptcha/rails"
+gem 'dotenv-rails'
+
 
 group :production do
   gem 'unicorn'
