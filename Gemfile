@@ -79,6 +79,7 @@ gem 'seed-fu'
 gem 'config'
 gem 'ancestry'
 gem 'payjp'
+gem "recaptcha"
 
 group :production do
   gem 'unicorn'
