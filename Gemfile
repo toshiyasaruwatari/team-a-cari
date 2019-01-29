@@ -49,6 +49,8 @@ group :development, :test do
   gem 'faker'
   gem 'omniauth'
   gem 'omniauth-facebook'
+  gem 'omniauth-google-oauth2'
+  gem 'dotenv-rails'
 end
 
 group :test do

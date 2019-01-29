@@ -8,10 +8,10 @@
       .login__main--inner
         %button#facebook-login.btn-sns
           %i.fa.fa-facebook-official
-          Facebookでログイン
+          = link_to "Facebookでログイン", user_facebook_omniauth_authorize_path
         %button#google-login.btn-sns
           %i.fa.fa-google-plus
-          Googleでログイン
+          = link_to "Googleでログイン", user_google_oauth2_omniauth_authorize_path
       = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
         .login__main--inner
           .login__form
