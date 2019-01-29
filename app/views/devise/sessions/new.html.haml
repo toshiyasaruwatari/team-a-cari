@@ -1,5 +1,6 @@
 .login__container
   = render "modules/header_logo_only"
+
   %main.signin__main
     .login__content
       .login__content--signin
@@ -18,8 +19,8 @@
             = f.email_field :email, placeholder: 'メールアドレス', class: "login__form--default login__email"
           .login__form
             = f.password_field :password, placeholder: 'パスワード', class: "login__form--default login__pass"
-          .g-recaptcha{"data-sitekey" => "6LcAJ4oUAAAAAPJ-gRLKEkhePTBcBWT4tklVb6wi"}
+            = recaptcha_tags theme: :dark
           = f.submit value: "ログイン", class: "login__button login__form--default"
       = link_to "パスワードをお忘れの方", edit_user_password_path, class: "forget__password"
 .poricy__img--content
-  = image_tag ("/assets/poricy.png")
+  = image_tag (asset_path "poricy.png")

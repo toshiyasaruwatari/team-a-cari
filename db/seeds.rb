@@ -25,3 +25,4 @@ end
 #CSV.foreach('db/test.csv') do |row|
  # Item.create(id: row[0], name: row[1], price: row[2], describe: row[3], status: row[4], delivery_fee: row[5], region: row[6], transport_day: row[7], seller_id: row[8],buyer_id: row[9],category_id: row[10], brand_id: row[11], size_id: row[12])
 #end
+
