@@ -1,71 +1,83 @@
 .items-box-content.clearfix
   %section.items-box
-    = link_to root_path do
+    = link_to "/items/2/show" do
       = image_tag (asset_path "cloth3.jpg")
       .items-box-body
-        .items-box-name サンプルサンプルサンプルサンプルサンプルサンプルsannsss
+        .items-box-name
+          = @item.name
         .items-box-num
-          .items-box-price ¥ 3,900
+          .items-box-price
+            = number_to_currency(@item.price, locale: 'jp')
           .items-box-likes
             = fa_icon 'heart-o'
             %span 2
           .item-box-tax (税込)
 
   %section.items-box
-    = link_to root_path do
+    = link_to "/items/2/show" do
       = image_tag (asset_path "cloth3.jpg")
       .items-box-body
-        .items-box-name サンプルサンプルサンプルサンプルサンプルサンプルsannsss
+        .items-box-name
+          = @item.name
         .items-box-num
-          .items-box-price ¥ 3,900
+          .items-box-price
+            = number_to_currency(@item.price, locale: 'jp')
           .items-box-likes
             = fa_icon 'heart-o'
             %span 2
           .item-box-tax (税込)
 
   %section.items-box
-    = link_to root_path do
+    = link_to "/items/2/show" do
       = image_tag (asset_path "cloth3.jpg")
       .items-box-body
-        .items-box-name サンプルサンプルサンプルサンプルサンプルサンプルsannsss
+        .items-box-name
+          = @item.name
         .items-box-num
-          .items-box-price ¥ 3,900
+          .items-box-price
+            = number_to_currency(@item.price, locale: 'jp')
           .items-box-likes
             = fa_icon 'heart-o'
             %span 2
           .item-box-tax (税込)
 
   %section.items-box
-    = link_to root_path do
+    = link_to "/items/2/show" do
       = image_tag (asset_path "cloth3.jpg")
       .items-box-body
-        .items-box-name サンプルサンプルサンプルサンプルサンプルサンプルsannsss
+        .items-box-name
+          = @item.name
         .items-box-num
-          .items-box-price ¥ 3,900
+          .items-box-price
+            = number_to_currency(@item.price, locale: 'jp')
           .items-box-likes
             = fa_icon 'heart-o'
             %span 2
           .item-box-tax (税込)
 
   %section.items-box
-    = link_to root_path do
+    = link_to "/items/2/show" do
       = image_tag (asset_path "cloth3.jpg")
       .items-box-body
-        .items-box-name サンプルサンプルサンプルサンプルサンプルサンプルsannsss
+        .items-box-name
+          = @item.name
         .items-box-num
-          .items-box-price ¥ 3,900
+          .items-box-price
+            = number_to_currency(@item.price, locale: 'jp')
           .items-box-likes
             = fa_icon 'heart-o'
             %span 2
           .item-box-tax (税込)
 
   %section.items-box
-    = link_to root_path do
+    = link_to "/items/2/show" do
       = image_tag (asset_path "cloth3.jpg")
       .items-box-body
-        .items-box-name サンプルサンプルサンプルサンプルサンプルサンプルsannsss
+        .items-box-name
+          = @item.name
         .items-box-num
-          .items-box-price ¥ 3,900
+          .items-box-price
+            = number_to_currency(@item.price, locale: 'jp')
           .items-box-likes
             = fa_icon 'heart-o'
             %span 2

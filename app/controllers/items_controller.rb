@@ -23,7 +23,6 @@ class ItemsController < ApplicationController
 
   end
 
-
   def trade_sell
   end
 
@@ -35,9 +34,7 @@ class ItemsController < ApplicationController
 
   def pay_way
   end
-  def show
-  end
-
+  
   def new
     @item = Item.new
     @item.item_images.build
@@ -57,6 +54,9 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @item = Item.find(params[:id])
+    # @nextitem = @item.id+1
+    # @user = User.find(params[:id])
   end
 
   def edit
