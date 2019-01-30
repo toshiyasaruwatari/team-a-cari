@@ -12,12 +12,12 @@
     .card__wrapper
       %section.card__input--text
         %h2 クレジットカード情報入力
-      = form_with method: 'POST', class: "credit__card--form" do |f|
+      = form_with method: 'POST',action: "/users/pay", class: "credit__card--form",url:'/users/pay',local:true do |f|
         .card__content
           .card__content--form.card__form--default
             = f.label :カード番号
             %span.card__content--require.card__require--default 必須
-            = f.text_field :text, placeholder: "半角数字のみ" , class: "card__input--default"
+            = f.text_field :number, placeholder: "半角数字のみ" , class: "card__input--default", maxlength: 16
             %ul.credit__card--list
               %li
               = image_tag (asset_path 'visa.svg'),class: 'card__icon card__visa'
@@ -38,16 +38,16 @@
             %span.card__content--require.card__require--default 必須
             .select__wrapper
               %i.fa.fa-angle-down
-              = f.date_select :name, (options = {discard_day: true, discard_year: true,use_month_numbers: true}), { class: "select__year select-default" }
+              = f.select :exp_month, [1,2,3,4,5,6,7,8,9,10,11,12], { id: "payment_card_expire_mm" } , { class: "select__month select-default" }
               %span.month__text 月
             .select__wrapper
               %i.fa.fa-angle-down
-              = f.date_select :name, (options = {discard_day: true, discard_month: true,use_month_numbers: true, start_year:23, end_year: 30}), { class: "select__year select-default" }
+              = f.select :exp_year, [2019,2020,2021,2022,2023,2024,2025,2026,2027,2028,2029,2030], { id: "payment_card_expire_mm" } , { class: "select__year select-default" }
               %span.year__text 年
             .sequrity__code--wrapper
               = f.label :セキュリティコード
               %span.card__content--require.card__require--default 必須
-              = f.text_field :name, placeholder: "カード背面4桁もしくは3桁の番号", class: "sequrity__code--box"
+              = f.text_field :csv, placeholder: "カード背面4桁もしくは3桁の番号", class: "sequrity__code--box"
             .credit__card--add
               .sequrity__code--qsbox
                 %span.card__question ?

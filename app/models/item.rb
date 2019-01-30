@@ -1,6 +1,7 @@
 class Item < ApplicationRecord
   belongs_to :category
   belongs_to :size, optional: true
+  belongs_to :item
   belongs_to :user, optional: true
   belongs_to :brand, optional: true
   belongs_to :seller, class_name: "User", foreign_key: "seller_id", optional:true

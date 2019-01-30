@@ -23,12 +23,24 @@ class ItemsController < ApplicationController
 
   end
 
+  def trade_sell
+  end
+
+  def trade_now
+  end
+
+  def trade_sold
+  end
+
+  def pay_way
+  end
+  
   def new
     @item = Item.new
     @item.item_images.build
     respond_to do |format|
       format.html
-      format.json { @childrens = Category.children_of(params[:parent_id]) }
+      format.json { @children = Category.children_of(params[:parent_id]) }
     end
   end
 
