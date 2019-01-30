@@ -22,13 +22,25 @@ class ItemsController < ApplicationController
     @nike_items = Item.includes(:item_images).where(brand_id: 2).order("created_at DESC").limit(4)
 
   end
+
+  def trade_sell
+  end
+
+  def trade_now
+  end
+
+  def trade_sold
+  end
+
+  def pay_way
+  end
   
   def new
     @item = Item.new
     @item.item_images.build
     respond_to do |format|
       format.html
-      format.json { @childrens = Category.children_of(params[:parent_id]) }
+      format.json { @children = Category.children_of(params[:parent_id]) }
     end
   end
 
@@ -40,8 +52,11 @@ class ItemsController < ApplicationController
       redirect_to action: 'new'
     end
   end
-  
+
   def show
+    @item = Item.find(params[:id])
+    # @nextitem = @item.id+1
+    # @user = User.find(params[:id])
   end
 
   def edit

@@ -46,6 +46,7 @@ group :development, :test do
   gem 'capistrano3-unicorn'
   gem 'rspec-rails'
   gem 'factory_bot_rails'
+  gem 'rails-controller-testing'
   gem 'faker'
 end
 
@@ -78,6 +79,10 @@ gem 'gretel'
 gem 'seed-fu'
 gem 'config'
 gem 'ancestry'
+gem 'payjp'
+gem "recaptcha", require: "recaptcha/rails"
+gem 'dotenv-rails'
+
 
 group :production do
   gem 'unicorn'
