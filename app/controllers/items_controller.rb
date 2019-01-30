@@ -55,8 +55,6 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    # @nextitem = @item.id+1
-    # @user = User.find(params[:id])
   end
 
   def edit
