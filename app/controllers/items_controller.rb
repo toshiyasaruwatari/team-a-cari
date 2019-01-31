@@ -23,7 +23,6 @@ class ItemsController < ApplicationController
 
   end
 
-
   def trade_sell
   end
 
@@ -35,12 +34,14 @@ class ItemsController < ApplicationController
 
   def pay_way
   end
+
   def show
   end
 
   def new
     @item = Item.new
     @item.item_images.build
+
     respond_to do |format|
       format.html
       format.json { @children = Category.children_of(params[:parent_id]) }
@@ -73,7 +74,7 @@ class ItemsController < ApplicationController
 
   private
   def item_params
-    params.require(:item).permit(:name, :price, :describe, :status, :burden, :delivery_method, :prefecture, :delivery_day, :category_id, images_attributes: [:image])
+    params.require(:item).permit(:name, :price, :describe, :size_id, :brand, :status, :burden, :delivery_method, :prefecture, :delivery_day, :category_id, item_images_attributes: [:image]).merge(seller_id: current_user.id)
   end
 
 end
