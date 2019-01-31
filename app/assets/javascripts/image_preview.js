@@ -1,46 +1,54 @@
 $(document).on('turbolinks:load', function() {
 
+  let imgNum = 0
+
   $("form").on('change', 'input[type="file"]', function(e){
 
     let file = e.target.files[0];
     let reader = new FileReader();
 
-    //画像ファイル以外の場合は何もしない
-    if(file.type.indexOf("image") < 0){
-      return false;
-    }
-
     reader.onload = function(){
 
-      let img = document.createElement('img');
-      img.style.cssText = "width: 11.7rem;"
-                          + "height: 11.7rem;"
-                          + "object-fit: contain;";
-      img.src = reader.result;
-
-      $('.have-item-0').removeClass('have-item-0').addClass('have-item-1');
-
-      $(".sell-upload-items ul").append(appendListHTML())
-
-      function appendListHTML() {
+      function appendListHTML(num) {
         let html =
-        `<li class="sell-upload-item" id="preview" >
-            <div class="sell-upload-item__button">
-              <a class="sell-upload-edit">編集</a><a class="sell-upload-delete">削除</a>
-            </div>
-        </li>`
+                  `<li class="sell-upload-item">
+                      <img alt="" class="preview-image image${num}">
+                      <div class="sell-upload-item__button">
+                        <a class="sell-upload-edit">編集</a><a class="sell-upload-delete">削除</a>
+                      </div>
+                  </li>`
         return html;
       }
 
-      $("#preview").prepend(img);
+      let imgSrc = reader.result;
+
+      $(".sell-upload-items ul").append(appendListHTML(imgNum))
+      $(".image" + imgNum).attr("src", imgSrc)
+
+      $(".upload__drop-box").addClass("hidden");
+
+      imgNum += 1
+
+      function buildLabelHTML(num) {
+        let html =
+                  `<label class="upload__drop-box have-item-${num}">
+                      <pre class="drop-text">ドラッグアンドドロップ<br>またはクリックしてファイルをアップロード</pre>
+                      <input type="file" class="hidden" name="item[item_images_attributes][${num}][image]">
+                  </label>`
+        return html;
+      }
+
+      $(".upload__drop.clearfix").append(buildLabelHTML(imgNum));
+
     };
 
     reader.readAsDataURL(file);
   });
 
   $(document).on("click", ".sell-upload-delete", function(){
-    $(".sell-upload-item").remove();
-    $('.have-item-1').removeClass('have-item-1').addClass('have-item-0');
+
+    $(this).parent().parent().remove();
+
   });
 
 });

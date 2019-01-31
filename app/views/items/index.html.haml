@@ -81,8 +81,13 @@
       = render partial: "pickup_category", locals: { items: @nike_items}
 
 %footer
-  = image_tag (asset_path "mercari.png")
+  = image_tag (asset_path "mercari.png"), class: "footer-image"
 
-= link_to new_item_path, class: "sell-btn" do
-  .sell-btn__text 出品
-  = fa_icon 'camera'
+- if user_signed_in?
+  = link_to new_item_path, class: "sell-btn" do
+    .sell-btn__text 出品
+    = fa_icon 'camera'
+- else
+  = link_to new_user_session_path, class: "sell-btn" do
+    .sell-btn__text 出品
+    = fa_icon 'camera'

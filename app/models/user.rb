@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable
   has_many :items
+  has_many :bought_items, class_name: 'Item', foreign_key: 'buyer_id'
+  has_many :sold_items, class_name: 'Item', foreign_key: 'seller_id'
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

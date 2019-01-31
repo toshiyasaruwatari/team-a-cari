@@ -5,6 +5,7 @@ FactoryBot.define do
     email                 "test@gmail.com"
     password              "000000"
     password_confirmation "000000"
+
   end
 
   factory :invalid_user do
