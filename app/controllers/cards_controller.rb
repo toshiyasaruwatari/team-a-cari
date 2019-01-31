@@ -34,6 +34,7 @@ protect_from_forgery except: :pay
 
   def buy
   @item = Item.find(params[:id])
+  if current_user.id != @item.seller_id
   Payjp.api_key = 'sk_test_6c9491bce7beee9bc4c8bf2f'
   charge = Payjp::Charge.create(
   :amount => @item.price,
@@ -41,8 +42,12 @@ protect_from_forgery except: :pay
   :currency => 'jpy',
   :capture => 'false'
 )
+else
+  return redirect_to root_path, alert: "予期せぬエラーが発生しました。"
+end
 if charge.paid == true
     @item[:buyer_id] = current_user.id
+    @item[:trade] = "取引中"
     @item.save
   redirect_to root_path, notice: "決済が完了しました。"
 else
@@ -50,5 +55,4 @@ else
   end
   end
 end
-    #items の購入stsを変える ifでstsが購入ずみならsoldつける
 

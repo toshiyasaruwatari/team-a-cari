@@ -28,9 +28,11 @@ class ItemsController < ApplicationController
   end
 
   def trade_now
+    @items = Item.where(trade:"取引中").where(seller_id: current_user.id)
   end
 
   def trade_sold
+    @items = Item.where(trade:"売却済").where(seller_id: current_user.id)
   end
 
   def pay_way
@@ -57,6 +59,7 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    @item_images = @item.item_images
   end
 
   def edit
@@ -73,7 +76,7 @@ class ItemsController < ApplicationController
 
   private
   def item_params
-    params.require(:item).permit(:name, :price, :describe, :size_id, :brand, :status, :burden, :delivery_method, :prefecture, :delivery_day, :category_id, item_images_attributes: [:image]).merge(seller_id: current_user.id)
+    params.require(:item).permit(:name, :price, :describe, :size_id, :brand_id, :status, :burden, :delivery_method, :prefecture, :delivery_day, :category_id, item_images_attributes: [:image]).merge(seller_id: current_user.id)
   end
 
 end
