@@ -36,16 +36,16 @@ ActiveRecord::Schema.define(version: 20190125121956) do
     t.text "describe", null: false
     t.integer "status", null: false
     t.integer "burden"
-    t.integer "delivery_method", null: false
     t.integer "prefecture", null: false
     t.integer "delivery_day", null: false
     t.integer "seller_id", null: false
-    t.integer "buyer_id"
+    t.integer "buyer_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "category_id", null: false
     t.bigint "brand_id", null: false
     t.bigint "size_id", null: false
+    t.integer "delivery_method", null: false
     t.index ["brand_id"], name: "index_items_on_brand_id"
     t.index ["category_id"], name: "index_items_on_category_id"
     t.index ["size_id"], name: "index_items_on_size_id"
@@ -70,7 +70,6 @@ ActiveRecord::Schema.define(version: 20190125121956) do
     t.string "last_name"
     t.string "first_reading"
     t.string "last_reading"
-    t.string "phone_number"
     t.integer "postal_code"
     t.string "prefecture"
     t.string "city"
