@@ -27,7 +27,13 @@
             %span.identification__content--require.identification__require--default 必須
             = f.password_field :password_confirmation, placeholder: "6文字以上" , class: "identification__input--default"
 
-          .g-recaptcha{"data-sitekey" => "6LcAJ4oUAAAAAPJ-gRLKEkhePTBcBWT4tklVb6wi"}
+          :javascript
+            grecaptcha.ready(function() {
+            grecaptcha.execute('6LfY64wUAAAAAEsVe027CKUVgpM4Te11Yf7DJ6Ik', {action: 'login'})
+            .then(function(token) {
+            // Verify the token on the server.
+            });
+            });
 
         = f.submit :登録する, class: "btn-next--content"
 
