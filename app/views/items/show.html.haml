@@ -9,7 +9,8 @@
   = breadcrumbs class: "breadcrumbs", style: :ul, separator: " #{content_tag(:i, '', :class=>'fa fa-chevron-right')} "
 
 %section.item-detail-container
-  %h1.item-detail-container__item-name スノーシューズ レディース 23
+  %h1.item-detail-container__item-name
+    = @item.name
   .item-detail-container__main-content
     .item-photo
       .main-image
@@ -23,6 +24,10 @@
           = image_tag (asset_path "cloth3.jpg")
         %li
           = image_tag (asset_path "member_photo_noimage_thumb.png")
+      .item-soldout
+        - if @item.buyer_id != nil
+          .item-soldout-image
+            %p.sold SOLD
 
     %table.item-detail-table
       %tbody
@@ -30,7 +35,7 @@
           %th 出品者
           %td
             = link_to root_path do
-              みつみみusagi
+              = @item.seller.nickname
             .ratings-wrapper
               .item-user-ratings
                 = fa_icon "smile-o"
@@ -45,62 +50,69 @@
           %th カテゴリー
           %td
             = link_to root_path do
-              %p レディース
+              %p
+                = @item.category.root.name
             = link_to root_path do
               .item-detail-table-sub-category
                 = fa_icon "chevron-right"
-                靴
+                = @item.category.parent.name
             = link_to root_path do
               .item-detail-table-sub-sub-category
                 = fa_icon "chevron-right"
-                ブーツ
+                = @item.category.name
 
 
         %tr
           %th ブランド
           %td
+            = @item.brand.name
         %tr
           %th 商品のサイズ
-          %td 23cm
+          %td
+            = @item.size.name
         %tr
           %th 商品の状態
-          %td 目立った傷や汚れなし
+          %td
+            = @item.status
         %tr
           %th 配送料の負担
-          %td 送料込み(出品者負担)
+          %td
+            = @item.burden
         %tr
           %th 配送の方法
-          %td らくらくメルカリ便
+          %td
+            = @item.delivery_method
         %tr
           %th 配送元地域
           %td
             = link_to root_path do
-              神奈川県
+              = @item.prefecture
         %tr
           %th 発送日の目安
-          %td 4~7日で発送
+          %td
+            = @item.delivery_day
 
   .item-price-box.text-center
-    %span.item-price-box__price.bold ¥1.800
+    %span.item-price-box__price.bold
+      = number_to_currency(@item.price, locale: 'jp')
     %span.item-price-box__tax (税込)
-    %span.item-price-box__fee 送料込み
-  .item-buy-btn 購入画面に進む
-  / .item-buy-btn.disabled 売り切れました
+    %span.item-price-box__fee
+      - if @item.burden_before_type_cast == 1
+        %p 送料込み
+      - else @item.burden_before_type_cast == 2
+        %p 着払い
+
+  - if @item.buyer_id == nil
+    .item-buy-btn
+      = link_to "/items/:id/buy", class: "item-buy-btn__link" do
+        購入画面に進む
+  - else @item.buyer_id != nil
+    .item-buy-btn.disabled 売り切れました
   .item-description
     %p.item-description-inner
-      お値下げします1999円→1800円☆
+      = @item.describe
       %br
-      5年前くらいに靴専門店で購入しました☆
-      一度、一泊スキー旅行で、そり遊び、雪道歩きに使用しました。
-      履き口周辺に若干の毛玉が出来てますが(写真4枚目参照)中敷は汚れなしです☆
-      靴底のゴムのすり減りはほとんどなく、状態は良いです☆
-      %br
-      プチプチに包んで発送致します♪
-      %br
-      返品は受け付けておりませんので、コメントでお気軽に質問してくださいね(o^^o)
-      %br
-      中古品になりますので、ご理解頂ける方のみのご購入を、よろしくお願い申し上げます☆
-      プロフもご覧くださいね☆
+      = @item.describe
 
   .item-button-container.clearfix
     .item-button-left
@@ -159,13 +171,15 @@
 
 %ul.nav-other-item-link.clearfix
   %li.nav-item-link-prev
-    = link_to root_path do
+    = link_to "/items/#{@item.id.pred}" do
       = fa_icon "chevron-left"
-      ニンジン
+      - if @item.previous.present?
+        = @item.previous.name
   %li.nav-item-link-next
-    = link_to root_path do
-      大根
-      = fa_icon "chevron-right"
+    = link_to "/items/#{@item.id.next}" do
+      - if @item.next.present?
+        = @item.next.name
+        = fa_icon "chevron-right"
 
 .item-social-media-box
   .text-center
@@ -184,14 +198,16 @@
   %section.items-box-container.clearfix.items-box-overflow
     %h2.items-box-head
       = link_to root_path, class: "extra-items" do
-        みつみみusagiさんのその他の出品
+        = @item.seller.nickname
+        さんのその他の出品
 
     = render "other"
 
   %section.items-box-container.clearfix.items-box-overflow
     %h2.items-box-head
       = link_to root_path, class: "extra-items" do
-        コーチのショルダーバッグ その他の商品
+        = @item.brand.name
+        その他の商品
 
     = render "other"
 

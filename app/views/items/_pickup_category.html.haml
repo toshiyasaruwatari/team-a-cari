@@ -3,13 +3,14 @@
   - items.each do |item|
     %section.items-box
       = link_to root_path do
-        = image_tag item.item_images.first.image
+        .trim
+          = image_tag item.item_images.first.image
         .items-box-body
           .items-box-name
             = item.name
           .items-box-num
             .items-box-price
-              = item.price
+              = number_to_currency(item.price, locale: 'jp')
             .items-box-likes
               = fa_icon 'heart-o'
               %span 2
