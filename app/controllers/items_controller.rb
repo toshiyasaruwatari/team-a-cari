@@ -35,9 +35,6 @@ class ItemsController < ApplicationController
   def pay_way
   end
 
-  def show
-  end
-
   def new
     @item = Item.new
     @item.item_images.build
@@ -58,6 +55,7 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @item = Item.find(params[:id])
   end
 
   def edit

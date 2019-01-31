@@ -49,7 +49,7 @@
               .buy__price-cell 支払い金額
               %span.buy__price-cell
                 = @item.price
-          = link_to "/items/#{@item.id}/buy", method: "POST" do
+          = link_to "/items/#{@item.id}/buy", method: "POST", data:{confirm: "#{@item.name}を購入します。よろしいですか？"} do
             .button.btn-default.btn-red.bold
               購入する
 
