@@ -22,15 +22,15 @@
           出品する
           = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
       %li.link__hover--action
-        = link_to trade_sell_path, class: 'prof__mypage-nav-list-item' do
+        = link_to "/users/#{current_user.id}/trade/sell", class: 'prof__mypage-nav-list-item' do
           出品した商品 - 出品中
           = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
       %li.link__hover--action
-        = link_to trade_now_path, class: 'prof__mypage-nav-list-item' do
+        = link_to "/users/#{current_user.id}/trade/now", class: 'prof__mypage-nav-list-item' do
           出品した商品 - 取引中
           = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
       %li.link__hover--action
-        = link_to trade_sold_path, class: 'prof__mypage-nav-list-item' do
+        = link_to "/users/#{current_user.id}/trade/sold", class: 'prof__mypage-nav-list-item' do
           出品した商品 - 売却済み
           = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
       %li.link__hover--action

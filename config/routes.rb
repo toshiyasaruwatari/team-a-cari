@@ -13,6 +13,9 @@ Rails.application.routes.draw do
       get '/:id/pay_way', to: 'users#pay_way'
       get '/:id/add_card', to: 'users#add_card'
       get '/:id/logout', to: 'users#logout'
+      get '/:id/trade/sell', to: "items#trade_sell"
+      get '/:id/trade/now', to: "items#trade_now"
+      get '/:id/trade/sold', to: "items#trade_sold"
     end
   end
 
@@ -30,8 +33,6 @@ Rails.application.routes.draw do
         post '/pay', to: "cards#pay"
       end
   end
-  get '/trade/sell', to: "items#trade_sell"
-  get '/trade/now', to: "items#trade_now"
-  get '/trade/sold', to: "items#trade_sold"
+
 end
 

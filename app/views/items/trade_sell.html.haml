@@ -13,14 +13,22 @@
       %h2 出品した商品
       %ul
         %li
-          = link_to trade_sell_path do
+          = link_to "/users/#{current_user.id}/trade/sell" do
             %h3.status__default.status__select 出品中
         %li
-          = link_to trade_now_path do
+          = link_to "/users/#{current_user.id}/trade/now" do
             %h3.status__default 取引中
         %li
-          = link_to trade_sold_path do
+          = link_to "/users/#{current_user.id}/trade/sold" do
             %h3.status__default 売却済み
-    .transaction__contents--lists
-      %ul.transaction__list
-        %li.transaction__list--default.transaction__not-found 取引中の商品がございません。
+
+  .item__lists--wrapper
+    %ul.item__lists
+      - @items.each do |item|
+        %li.item__lists--content
+          = link_to root_path do
+            %figure
+          .item__lists__box--text
+            %span
+              = item.name
+            %span 出品中

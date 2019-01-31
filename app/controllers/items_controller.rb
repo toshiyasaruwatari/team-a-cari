@@ -24,6 +24,7 @@ class ItemsController < ApplicationController
   end
 
   def trade_sell
+    @items = Item.where(trade:"出品中").where(seller_id: current_user.id)
   end
 
   def trade_now
