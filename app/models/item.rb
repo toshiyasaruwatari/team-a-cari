@@ -1,12 +1,14 @@
 class Item < ApplicationRecord
+
   belongs_to :category
-  belongs_to :size, optional: true
-  belongs_to :item
+
   belongs_to :user, optional: true
+  belongs_to :size
   belongs_to :brand, optional: true
-  belongs_to :seller, class_name: "User", foreign_key: "seller_id", optional:true
-  belongs_to :buyer, class_name: "User", foreign_key: "buyer_id", optional: true
-  # has_one :size
+
+  belongs_to :seller, class_name: "User", optional: true
+  belongs_to :buyer, class_name: "User", optional: true
+
   has_many   :item_images, dependent: :destroy
   accepts_nested_attributes_for :item_images
 

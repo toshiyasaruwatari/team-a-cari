@@ -2,7 +2,8 @@
   .items
     .header
       .icon
-        = image_tag('//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?817106341', class: 'item-img')
+        = link_to root_path do
+          = image_tag('//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?817106341', class: 'item-img')
     .main
       .main-body
         .title
@@ -19,10 +20,12 @@
               .sell-upload-items.have-item-0
                 %ul
             = f.label :image, class: "upload__drop-box have-item-0" do
-              = f.file_field :image, id: "item_image", class: "hidden", multiple: true
               %pre.drop-text
                 ドラッグアンドドロップ
                 またはクリックしてファイルをアップロード
+              = f.fields_for :item_images do |i|
+                = i.file_field :image, id: "item_image", class: "hidden"
+
         .item
           .item-group
             .item-head
@@ -61,8 +64,9 @@
               .form-title
                 ブランド
                 %span.form-arbitrary 任意
-              .form-box
-                = f.text_field :brand, placeholder: "例）シャネル", class: "input-default"
+              .select-wrap
+                = f.select :brand_id, Brand.all.map{|brand| [brand.name, brand.id]}, {prompt: "---"}, class: "select-default"
+                = fa_icon 'angle-down', class: 'form-icon'
 
             .state
               .state-head

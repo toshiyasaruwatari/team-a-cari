@@ -1,8 +1,10 @@
 footer {
   box-sizing: border-box;
   position: relative;
-  height: 79rem;
-  background-color: black;
+  .footer-image {
+    width: 100%;
+    min-height: 79rem;
+  }
 }
 
 .sell-btn {
