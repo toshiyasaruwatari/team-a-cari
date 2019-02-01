@@ -3,6 +3,12 @@ class UsersController < ApplicationController
   def show
   end
 
+  def new
+  end
+
+  def create
+  end
+
   def edit
   end
 
@@ -15,11 +21,6 @@ class UsersController < ApplicationController
   def identify
   end
 
-  def pay_way
-  end
-
-  def add_card
-  end
 
   private
 
