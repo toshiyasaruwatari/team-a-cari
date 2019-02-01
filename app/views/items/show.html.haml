@@ -99,7 +99,7 @@
 
   - if @item.buyer_id == nil
     .item-buy-btn
-      = link_to "/items/:id/buy", class: "item-buy-btn__link" do
+      = link_to "/items/#{@item.id}/buy_confirm", class: "item-buy-btn__link" do
         購入画面に進む
   - else @item.buyer_id != nil
     .item-buy-btn.disabled 売り切れました

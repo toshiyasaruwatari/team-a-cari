@@ -34,17 +34,17 @@ protect_from_forgery except: :pay
 
   def buy
   @item = Item.find(params[:id])
-  if current_user.id != @item.seller_id
+  if current_user.id != @item.seller_id && current_user.pay_id.present?
   Payjp.api_key = 'sk_test_6c9491bce7beee9bc4c8bf2f'
   charge = Payjp::Charge.create(
   :amount => @item.price,
   :customer => current_user.pay_id,
   :currency => 'jpy',
   :capture => 'false'
-)
-else
-  return redirect_to root_path, alert: "予期せぬエラーが発生しました。"
-end
+  )
+  else
+    return redirect_to root_path, notice:"カードを登録してください。"
+  end
 if charge.paid == true
     @item[:buyer_id] = current_user.id
     @item[:trade] = "取引中"
