@@ -76,9 +76,9 @@ figure {
       }
       .item-soldout {
         position: absolute;
-        .item-soldout-image {
+        &-image {
           border-width: 12rem 12rem 0 0;
-          border-color: #ea352d transparent transparent transparent;
+          border-color: #ea352dba transparent transparent transparent;
           position: absolute;
           display: block;
           z-index: 1;
@@ -167,7 +167,7 @@ figure {
     text-align: center;
     font-size: 2.4rem;
     font-weight: 600;
-    .item-buy-btn__link {
+    &__link {
       display: block;
       color: #fff;
     }
@@ -175,7 +175,7 @@ figure {
   .item-description {
     padding-top: 3.2rem;
     font-size: 1.8rem;
-    .item-description-inner {
+      &-inner {
       white-space: pre-wrap;
     }
   }
@@ -291,7 +291,7 @@ figure {
         border-radius: 15px;
         line-height: 1.5;
         word-break: break-all;
-        .message-body-text {
+        &-text {
           position: inherit;
           z-index: 2;
         }
@@ -506,3 +506,29 @@ figure {
   overflow: hidden;
 }
 
+.item-soldout {
+  position: absolute;
+  &-image {
+    border-width: 12rem 12rem 0 0;
+    border-color: #ea352dba transparent transparent transparent;
+    position: absolute;
+    display: block;
+    z-index: 1;
+    top: -21.2rem;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    .sold {
+      top: -9.4rem;
+      font-size: 2.8rem;
+      z-index: 2;
+      transform: rotate(-45deg);
+      letter-spacing: 2px;
+      font-weight: 600;
+      color: #fff;
+      left: 0;
+      position: absolute;
+    }
+  }
+}
