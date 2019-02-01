@@ -11,7 +11,7 @@ protect_from_forgery except: :pay
   end
 
   def pay
-  Payjp.api_key = 'sk_test_6c9491bce7beee9bc4c8bf2f'
+  Payjp.api_key = ENV['PAYJP_SECRET_KEY']
   token = Payjp::Token.create({
     :card => {
     :number => params["number"],
@@ -35,7 +35,7 @@ protect_from_forgery except: :pay
   def buy
   @item = Item.find(params[:id])
   if current_user.id != @item.seller_id && current_user.pay_id.present?
-  Payjp.api_key = 'sk_test_6c9491bce7beee9bc4c8bf2f'
+  Payjp.api_key = ENV['PAYJP_SECRET_KEY']
   charge = Payjp::Charge.create(
   :amount => @item.price,
   :customer => current_user.pay_id,
@@ -43,7 +43,7 @@ protect_from_forgery except: :pay
   :capture => 'false'
   )
   else
-    return redirect_to root_path, notice:"カードを登録してください。"
+    return redirect_to root_path, alert:"カードを登録してください。"
   end
 if charge.paid == true
     @item[:buyer_id] = current_user.id

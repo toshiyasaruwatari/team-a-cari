@@ -2,7 +2,7 @@
 
   - items.each do |item|
     %section.items-box
-      - if item.seller_id == current_user.id
+      - if user_signed_in? && item.seller_id == current_user.id
         = link_to edit_item_path(item) do
           .trim
             = image_tag item.item_images.first.image
