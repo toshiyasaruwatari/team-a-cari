@@ -34,11 +34,11 @@
           出品した商品 - 売却済み
           = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
       %li.link__hover--action
-        = link_to root_path, class: 'prof__mypage-nav-list-item' do
+        = link_to "/users/#{current_user.id}/buy/now", class: 'prof__mypage-nav-list-item' do
           購入した商品 - 取引中
           = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
       %li.link__hover--action
-        = link_to root_path, class: 'prof__mypage-nav-list-item' do
+        = link_to "/users/#{current_user.id}/bought", class: 'prof__mypage-nav-list-item' do
           購入した商品 - 過去の取引
           = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
       %li.link__hover--action

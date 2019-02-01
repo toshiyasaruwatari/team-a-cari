@@ -35,7 +35,12 @@ class ItemsController < ApplicationController
     @items = Item.where(trade:"売却済").where(seller_id: current_user.id)
   end
 
-  def pay_way
+  def buy_now
+    @items = Item.where(trade:"取引中").where(buyer_id: current_user.id)
+  end
+
+  def bought
+    @items = Item.where(trade:"売却済").where(buyer_id: current_user.id)
   end
 
   def new

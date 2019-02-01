@@ -16,6 +16,8 @@ Rails.application.routes.draw do
       get '/:id/trade/sell', to: "items#trade_sell"
       get '/:id/trade/now', to: "items#trade_now"
       get '/:id/trade/sold', to: "items#trade_sold"
+      get '/:id/buy/now', to: "items#buy_now"
+      get '/:id/bought', to: "items#bought"
     end
   end
 

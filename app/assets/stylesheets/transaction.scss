@@ -11,6 +11,9 @@
     }
     ul{
       display: flex;
+      .buy__contents {
+        width: 50%;
+      }
       li {
         position: relative;
         display: block;
@@ -105,6 +108,4 @@
   border-top: 2px solid #ea352d;
   background: #fff;
 }
-
-
 
