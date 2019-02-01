@@ -1,6 +1,7 @@
-$(function(){
+$(document).on('turbolinks:load', function() {
   $('.prof__mypage-nav-list-item').hover(
     function(){
+    console.log("aaa");
     $(this).css('background-color', '#f5f5f5');
     $(this).children().animate(
       {
