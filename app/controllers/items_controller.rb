@@ -70,6 +70,16 @@ class ItemsController < ApplicationController
   def buy
   end
 
+  def change
+    @item = Item.find(params[:id])
+  end
+
+  def destroy
+    item = Item.find(params[:id])
+    item.destroy if item.seller_id == current_user.id
+    redirect_to trade_now_path
+  end
+
   private
   def item_params
     params.require(:item).permit(:name, :price, :describe, :size_id, :brand, :status, :burden, :delivery_method, :prefecture, :delivery_day, :category_id, item_images_attributes: [:image]).merge(seller_id: current_user.id)
