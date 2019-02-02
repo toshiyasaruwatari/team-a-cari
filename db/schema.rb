@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190129034707) do
+ActiveRecord::Schema.define(version: 20190131063129) do
 
   create_table "brands", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name", null: false
@@ -36,16 +36,17 @@ ActiveRecord::Schema.define(version: 20190129034707) do
     t.text "describe", null: false
     t.integer "status", null: false
     t.integer "burden"
+    t.integer "delivery_method", null: false
     t.integer "prefecture", null: false
     t.integer "delivery_day", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "category_id", null: false
     t.bigint "size_id", null: false
-    t.integer "delivery_method", null: false
     t.bigint "seller_id"
     t.bigint "buyer_id"
     t.bigint "brand_id"
+    t.integer "trade", default: 0, null: false
     t.index ["brand_id"], name: "index_items_on_brand_id"
     t.index ["buyer_id"], name: "index_items_on_buyer_id"
     t.index ["category_id"], name: "index_items_on_category_id"
@@ -72,6 +73,7 @@ ActiveRecord::Schema.define(version: 20190129034707) do
     t.string "last_name"
     t.string "first_reading"
     t.string "last_reading"
+    t.string "phone_number"
     t.integer "postal_code"
     t.string "prefecture"
     t.string "city"
@@ -82,10 +84,10 @@ ActiveRecord::Schema.define(version: 20190129034707) do
     t.date "birth_year"
     t.integer "point"
     t.integer "proseed"
-    t.string "uid"
-    t.string "provider"
     t.text "token_id"
     t.text "pay_id"
+    t.string "uid"
+    t.string "provider"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

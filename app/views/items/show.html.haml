@@ -14,16 +14,11 @@
   .item-detail-container__main-content
     .item-photo
       .main-image
-        = image_tag (asset_path "cloth3.jpg")
+        = image_tag @item_images.first.image
       %ul.sub-image
-        %li
-          = image_tag (asset_path "cloth3.jpg")
-        %li
-          = image_tag (asset_path "member_photo_noimage_thumb.png")
-        %li
-          = image_tag (asset_path "cloth3.jpg")
-        %li
-          = image_tag (asset_path "member_photo_noimage_thumb.png")
+        - @item_images.each do |item_image|
+          %li
+            = image_tag item_image.image
       .item-soldout
         - if @item.buyer_id != nil
           .item-soldout-image
@@ -104,7 +99,7 @@
 
   - if @item.buyer_id == nil
     .item-buy-btn
-      = link_to "/items/:id/buy", class: "item-buy-btn__link" do
+      = link_to "/items/#{@item.id}/buy_confirm", class: "item-buy-btn__link" do
         購入画面に進む
   - else @item.buyer_id != nil
     .item-buy-btn.disabled 売り切れました
@@ -112,7 +107,6 @@
     %p.item-description-inner
       = @item.describe
       %br
-      = @item.describe
 
   .item-button-container.clearfix
     .item-button-left
