@@ -5,10 +5,14 @@ class CardsController < ApplicationController
   end
 
   def new
+
   end
 
   def buy_confirm
     @item = Item.find(params[:id])
+  end
+
+  def registrate
   end
 
   def pay
@@ -30,6 +34,7 @@ class CardsController < ApplicationController
     user = User.find(current_user.id)
     user[:pay_id] = customer.id
     user.save
+    redirect_to :root
   end
 
   def buy
