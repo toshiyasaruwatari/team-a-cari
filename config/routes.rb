@@ -10,8 +10,6 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit, :update, :destroy] do
     collection do
       get '/:id/identify', to: 'users#identify'
-      get '/:id/pay_way', to: 'users#pay_way'
-      get '/:id/add_card', to: 'users#add_card'
       get '/:id/logout', to: 'users#logout'
       get '/:id/trade/sell', to: "items#trade_sell"
       get '/:id/trade/now', to: "items#trade_now"
@@ -35,6 +33,7 @@ Rails.application.routes.draw do
         post '/pay', to: "cards#pay"
       end
   end
-
+  get '/user/adress/registrate', to: 'users#new'
+  get '/user/adress/registrate/create', to: 'users#create'
 end
 

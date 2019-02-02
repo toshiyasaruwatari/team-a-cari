@@ -6,6 +6,7 @@ class CardsController < ApplicationController
 
   def new
   end
+
   def buy_confirm
     @item = Item.find(params[:id])
   end
