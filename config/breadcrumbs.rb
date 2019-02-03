@@ -18,7 +18,7 @@ crumb :card_add do
 end
 
 crumb :detail do
-  link "商品詳細ページ", "/items/#{item.id}"
+  link "商品詳細ページ", item_path
   parent :root
 end
 
@@ -50,6 +50,11 @@ end
 crumb :trade_sold do
   link "出品した商品 - 売却済み", "/users/#{current_user.id}/trade/sold"
   parent :mypage
+end
+
+crumb :change do
+  link "出品商品画面", "/items/@item/change"
+  parent :trade_sell
 end
 
 crumb :buy_now do
