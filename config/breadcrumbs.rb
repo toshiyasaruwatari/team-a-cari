@@ -18,7 +18,7 @@ crumb :card_add do
 end
 
 crumb :detail do
-  link "商品詳細ページ", "/items/#{item.id}"
+  link "商品詳細ページ", "/items/@item.id"
   parent :root
 end
 
