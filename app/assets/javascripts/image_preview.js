@@ -38,8 +38,8 @@ $(document).on('turbolinks:load', function() {
     let reader = new FileReader();
 
     let numArray = [];
-    $('label').find('input[type="file"]').each(function( i, ele ) {
-      numArray.push(ele.id.match(/[0-9]+/));
+    $('label').find('input[type="file"]').each(function( i, inputFile ) {
+      numArray.push(inputFile.id.match(/[0-9]+/));
     });
 
     let inputNum = Math.max.apply(null, numArray)

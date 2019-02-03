@@ -72,18 +72,21 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    @item = Item.find(params[:id])
+    if current_user.id == item.seller_id && user_signed_in?
+      @item = Item.find(params[:id])
+    end
   end
 
   def update
-    item = Item.find(params[:id])
-    item.update(update_params)
-    redirect_to action: 'change'
+    if current_user.id == item.seller_id && user_signed_in?
+      item = Item.find(params[:id])
+      item.update(update_params)
+      redirect_to action: 'change'
+    end
   end
 
   def destroy
     @item = Item.find(params[:id])
-
   end
 
   def logout
