@@ -23,4 +23,16 @@
             %h3.status__default 売却済み
     .transaction__contents--lists
       %ul.transaction__list
-        %li.transaction__list--default.transaction__not-found 取引中の商品がございません。
+        - if current_user.items.present?
+          %li
+            = link_to root_path, class: "mypage-item-list" do
+              = image_tag (asset_path "logo.mini.png"), class: "image-size-default"
+              .mypage-item-body
+                .mypage-item-body__text
+                  MacBookPro 256GB(2018年モデル)
+                .mypage-item-body__icon
+                  .mypage-item-status.action-required 発送待ち
+
+              = fa_icon 'chevron-right'
+        - else
+          %li.transaction__list--default.transaction__not-found 取引中の商品がございません。

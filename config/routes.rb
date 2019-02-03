@@ -12,12 +12,16 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :items, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
+  resources :items do
     collection do
       get '/:id/buy_confirm', to: 'cards#buy_confirm'
       post '/:id/buy', to: 'cards#buy'
+      get '/:id/change', to: 'items#change'
     end
   end
+
+  resources :item_images, only:[:destroy]
+
   resources :users, only:[:show] do
     resources :cards, only:[:index,:new, :pay]
       collection do

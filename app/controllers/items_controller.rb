@@ -46,7 +46,7 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.new(item_params)
+    @item = Item.new(create_params)
     if @item.save
       redirect_to action: 'index'
     else
@@ -58,10 +58,23 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
+  def change
+    @item = Item.find(params[:id])
+  end
+
   def edit
+    @item = Item.find(params[:id])
   end
 
   def update
+    item = Item.find(params[:id])
+    item.update(update_params)
+    redirect_to action: 'change'
+  end
+
+  def destroy
+    @item = Item.find(params[:id])
+
   end
 
   def logout
@@ -71,8 +84,12 @@ class ItemsController < ApplicationController
   end
 
   private
-  def item_params
-    params.require(:item).permit(:name, :price, :describe, :size_id, :brand, :status, :burden, :delivery_method, :prefecture, :delivery_day, :category_id, item_images_attributes: [:image]).merge(seller_id: current_user.id)
+  def create_params
+    params.require(:item).permit(:name, :price, :describe, :size_id, :brand_id, :status, :burden, :delivery_method, :prefecture, :delivery_day, :category_id, item_images_attributes: [:image]).merge(seller_id: current_user.id)
+  end
+
+  def update_params
+    params.require(:item).permit(:name, :price, :describe, :size_id, :brand_id, :status, :burden, :delivery_method, :prefecture, :delivery_day, :category_id, item_images_attributes: [:id , :item_id, :image]).merge(seller_id: current_user.id)
   end
 
 end
