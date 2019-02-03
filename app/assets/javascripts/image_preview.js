@@ -108,7 +108,6 @@ $(document).on('turbolinks:load', function() {
 
     let imgCount = $(".sell-upload-item").length
     if (imgCount == 4) {
-      console.log('buildが実行されました（deleteイベント）')
       $(".sell-upload-items-container").append(buildLabelHTML(attributesNum));
       attributesNum += 1;
     }
