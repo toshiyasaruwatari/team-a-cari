@@ -65,6 +65,11 @@ class ItemsController < ApplicationController
   def show
     @item = Item.find(params[:id])
     @item_images = @item.item_images
+    @user = User.find(@item.seller_id)
+    @reviews = Review.where(taker_id: @user.id)
+    @good_reviews = @reviews.where(review: "良い")
+    @normal_reviews = @reviews.where(review: "普通")
+    @bad_reviews = @reviews.where(review: "悪い")
   end
 
   def edit

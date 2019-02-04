@@ -5,6 +5,12 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:id])
+    @items = Item.where(seller_id: @user.id)
+    @reviews = Review.where(taker_id: @user.id)
+    @good_reviews = @reviews.where(review: "良い")
+    @normal_reviews = @reviews.where(review: "普通")
+    @bad_reviews = @reviews.where(review: "悪い")
   end
 
   def new

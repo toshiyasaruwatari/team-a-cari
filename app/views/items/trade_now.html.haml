@@ -23,13 +23,15 @@
         - if @items.present?
           - @items.each do |item|
             %li
-              = link_to "/items/#{item.id}/change", class: "mypage-item-list" do
+              = link_to  new_item_review_path(item), class: "mypage-item-list" do
                 = image_tag (item.item_images.first.image), class: "image-size-default"
                 .mypage-item-body
                   .mypage-item-body__text
                     = item.name
                   .mypage-item-body__icon
                     .mypage-item-status.action-selling 取引中
+                  .request__review
+                    %span レビューをしてください
                 = fa_icon 'chevron-right'
         - else
           %li.transaction__list--default.transaction__not-found 取引中の商品がございません。
