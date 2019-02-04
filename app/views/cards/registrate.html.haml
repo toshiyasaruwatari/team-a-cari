@@ -1,5 +1,6 @@
 .member-ship__wrapper
-  = link_to image_tag(asset_path 'phone_header'), root_path
+  = link_to root_path do
+    = image_tag (asset_path 'phone_header')
 
 .card__wrapper__top
   %section.card__input--text

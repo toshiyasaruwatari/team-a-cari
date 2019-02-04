@@ -20,6 +20,7 @@
             %h3.status__default 売却済み
     .transaction__contents--lists
       %ul.transaction__list
+
         - if @items.present?
           - @items.each do |item|
             %li
@@ -31,5 +32,6 @@
                   .mypage-item-body__icon
                     .mypage-item-status.action-selling 取引中
                 = fa_icon 'chevron-right'
+
         - else
-          %li.transaction__list--default.transaction__not-found 取引中の商品がございません。
+          %li.transaction__list--default.not-found 取引中の商品がございません。

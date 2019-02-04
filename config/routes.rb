@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations' }
+
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations'}
 
   devise_scope :user do
     delete :sign_out, to: 'devise/sessions#destroy'
@@ -11,6 +12,7 @@ Rails.application.routes.draw do
     collection do
       get '/:id/identify', to: 'users#identify'
       get '/:id/logout', to: 'users#logout'
+      get '/:id/sales', to: 'users#sales'
       get '/:id/trade/sell', to: "items#trade_sell"
       get '/:id/trade/now', to: "items#trade_now"
       get '/:id/trade/sold', to: "items#trade_sold"
@@ -35,5 +37,9 @@ Rails.application.routes.draw do
       delete '/trade/now', to: "items#trade_now"
     end
   end
+
+  resources :item_images, only:[:destroy]
+
   patch '/:id/user/identify', to: 'users#identify'
+
 end
