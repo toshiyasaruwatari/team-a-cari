@@ -1,5 +1,6 @@
 .member-ship__wrapper
-  = link_to image_tag(asset_path 'phone_header'), root_path
+  = link_to root_path do
+    = image_tag (asset_path 'phone_header')
 
   .person__rbox__top
     %section.person__rbox__container.identification__user
