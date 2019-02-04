@@ -11,10 +11,10 @@
       %ul
         %li.buy__contents
           = link_to "/users/#{current_user.id}/buy/now" do
-            %h3.status__default.buy__contents 取引中
+            %h3.status__default.buy__contents.status__select 取引中
         %li.buy__contents
           = link_to "/users/#{current_user.id}/bought"  do
-            %h3.status__default.buy__contents.status__select 過去の取引
+            %h3.status__default.buy__contents 過去の取引
     .transaction__contents--lists
       %ul.transaction__list
         - if @items.present?
@@ -29,4 +29,4 @@
                     .mypage-item-status.action-selling 取引中
                 = fa_icon 'chevron-right'
         - else
-          %li.transaction__list--default.transaction__not-found 取引中の商品がございません。
+          %li.transaction__list--default.not-found 取引中の商品がございません。
