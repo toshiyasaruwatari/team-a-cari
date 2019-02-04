@@ -61,8 +61,12 @@
         %tr
           %th ブランド
           %td
+<<<<<<< Updated upstream
             - if @item.brand.present?
               = @item.brand.name
+=======
+            / = @item.brand.name
+>>>>>>> Stashed changes
         %tr
           %th 商品のサイズ
           %td
@@ -201,10 +205,15 @@
   %section.items-box-container.clearfix.items-box-overflow
     %h2.items-box-head
       = link_to root_path, class: "extra-items" do
+<<<<<<< Updated upstream
         - if @item.brand.present?
           = @item.brand.name
           その他の商品
+=======
+        / = @item.brand.name
+        その他の商品
+>>>>>>> Stashed changes
 
     = render "other"
 
-= image_tag (asset_path "mercari.png")
+= render partial: 'modules/footer_index'
