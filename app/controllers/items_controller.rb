@@ -93,6 +93,16 @@ class ItemsController < ApplicationController
   def buy
   end
 
+  def change
+    @item = Item.find(params[:id])
+  end
+
+  def destroy
+    item = Item.find(params[:id])
+    item.destroy if item.seller_id == current_user.id
+    redirect_to trade_now_path
+  end
+
   private
 
   def create_params
