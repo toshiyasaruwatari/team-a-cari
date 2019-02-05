@@ -37,8 +37,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :item_images, only:[:destroy]
-
   patch '/:id/user/identify', to: 'users#identify'
 
 end

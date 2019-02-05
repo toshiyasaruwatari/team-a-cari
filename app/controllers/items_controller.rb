@@ -64,15 +64,23 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    @item_images = @item.item_images
+    @item_images = @item.item_images.limit(4)
   end
 
   def change
     @item = Item.find(params[:id])
+    @item_images = @item.item_images.limit(4)
   end
 
   def edit
     @item = Item.find(params[:id])
+    @set_sub = @item.category.parent
+    @set_third = @item.category
+    @sub_categories = Category.siblings_of(@item.category.parent)
+    @third_categories = Category.siblings_of(@item.category)
+
+    @commission = (@item.price * 0.1).floor
+    @profit = @item.price - @commission
   end
 
   def update
@@ -80,6 +88,8 @@ class ItemsController < ApplicationController
     if current_user.id == item.seller_id && user_signed_in?
       item.update(update_params)
       redirect_to action: 'change'
+    else
+      redirect_to action: 'edit'
     end
   end
 
@@ -94,13 +104,12 @@ class ItemsController < ApplicationController
   end
 
   private
-
   def create_params
     params.require(:item).permit(:name, :price, :describe, :size_id, :brand_id, :status, :burden, :delivery_method, :prefecture, :delivery_day, :category_id, item_images_attributes: [:image]).merge(seller_id: current_user.id)
   end
 
   def update_params
-    params.require(:item).permit(:name, :price, :describe, :size_id, :brand_id, :status, :burden, :delivery_method, :prefecture, :delivery_day, :category_id, item_images_attributes: [:id , :item_id, :image]).merge(seller_id: current_user.id)
+    params.require(:item).permit(:name, :price, :describe, :size_id, :brand_id, :status, :burden, :delivery_method, :prefecture, :delivery_day, :category_id, item_images_attributes: [:id , :item_id, :image, :_destroy]).merge(seller_id: current_user.id)
   end
 
 end

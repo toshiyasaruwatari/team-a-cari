@@ -94,15 +94,9 @@ $(document).on('turbolinks:load', function() {
 
     let deleteNum = $(this).data('image-number')
 
-    $('.sell-upload-items-container').find('input[type="hidden"]').each(function(i, ele) {
-      if (ele.id.match(/[0-9]+/) == deleteNum) {
-        deleteImageId = $(ele).val();
-      }
-    });
-
-    $('label').find('input[type="file"]').each(function( i, ele ) {
-      if (ele.id.match(/[0-9]+/) == deleteNum) {
-        $(ele).parent().remove();
+    $('label').find('input[type="file"]').each(function( i, targetFile ) {
+      if (targetFile.id.match(/[0-9]+/) == deleteNum) {
+        $(targetFile).prev('#delete').prop('checked', true)
       }
     });
 

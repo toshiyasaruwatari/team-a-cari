@@ -99,10 +99,14 @@
       - else @item.burden_before_type_cast == 2
         %p 着払い
 
+
   - if @item.buyer_id == nil
-    .item-buy-btn
-      = link_to "/items/#{@item.id}/buy_confirm", class: "item-buy-btn__link" do
-        購入画面に進む
+    - if user_signed_in? != true || current_user.id != @item.seller_id
+      .item-buy-btn
+        = link_to "/items/#{@item.id}/buy_confirm", class: "item-buy-btn__link" do
+          購入画面に進む
+    - else user_signed_in? && current_user.id == @item.seller_id
+      .item-buy-btn.hidden
   - else @item.buyer_id != nil
     .item-buy-btn.disabled 売り切れました
   .item-description
