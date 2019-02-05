@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations'}
 
   devise_scope :user do
@@ -42,4 +43,3 @@ Rails.application.routes.draw do
   patch '/:id/user/identify', to: 'users#identify'
 
 end
-
