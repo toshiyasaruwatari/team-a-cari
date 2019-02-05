@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   end
 
   resources :items do
+    resources :reviews, only: [:new, :create]
     collection do
       get '/:id/buy', to: 'items#buy'
       get '/:id/buy_confirm', to: 'cards#buy_confirm'

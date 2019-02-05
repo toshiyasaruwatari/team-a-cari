@@ -3,7 +3,7 @@
   - items.each do |item|
     %section.items-box
       - if user_signed_in? && item.seller_id == current_user.id
-        = link_to edit_item_path(item) do
+        = link_to root_path do
           .trim
             = image_tag item.item_images.first.image
           .item-soldout
