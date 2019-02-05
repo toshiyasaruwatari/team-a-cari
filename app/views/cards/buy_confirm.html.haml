@@ -71,11 +71,11 @@
       .buy__content-user-inner
         %h3.buy__content-user-inner 支払い方法
         %p.buy__user-info-text
-          ************4242
+          = "************#{@last4}"
           %br/
-          00 / 00
+          = "#{@exp_month}/#{@exp_year}"
 
-        = image_tag (asset_path "master-card.svg"), class: 'buy__user-info-card'
+        = image_tag (asset_path "visa.svg"), class: 'buy__user-info-card'
 
         %p
         = link_to root_path, class: 'buy__user-info-fix' do
