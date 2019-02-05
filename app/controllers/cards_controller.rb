@@ -10,9 +10,9 @@ class CardsController < ApplicationController
 
   def buy_confirm
     @item = Item.find(params[:id])
-    @user = User.find(current_user.id)
+    @current_user = User.find(current_user.id)
     Payjp.api_key = ENV['PAYJP_SECRET_KEY']
-    @customer = Payjp::Customer.retrieve(@user.pay_id,{
+    @customer = Payjp::Customer.retrieve(@current_user.pay_id,{
     })
     @last4 = @customer.cards.data[0][:last4]
     @exp_month = @customer.cards.data[0][:exp_month]

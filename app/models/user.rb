@@ -16,6 +16,12 @@ class User < ApplicationRecord
     end
   end
 
+  def self.set_review(reviews)
+    @good_reviews = reviews.where(review: "良い")
+    @normal_reviews = reviews.where(review: "普通")
+    @bad_reviews = reviews.where(review: "悪い")
+  end
+
   validates :nickname, presence: true, length: { maximum: 20 }
   validates :email, presence: true, uniqueness: true
   #validates :password, presence: true, confirmation: true, length: { minimum: 6 }

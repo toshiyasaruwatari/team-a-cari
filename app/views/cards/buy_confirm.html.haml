@@ -57,11 +57,11 @@
       .buy__content-user-inner
         %h3.buy__content-user-inner 配送先
         %address.buy__user-info-text
-          = "〒#{@user.postal_code}"
+          = "〒#{@current_user.postal_code}"
           %br/
-          = "#{@user.prefecture}#{@user.city}\n#{@user.building_name}#{@user.address}"
+          = "#{@current_user.prefecture}#{@current_user.city}\n#{@current_user.building_name}#{@current_user.address}"
           %br/
-          = "#{@user.first_name}#{@user.last_name}"
+          = "#{@current_user.first_name}#{@current_user.last_name}"
         %p.buy-user-info-text
         = link_to root_path, class: 'buy__user-info-fix' do
           %span 変更する
