@@ -92,10 +92,11 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  def logout
+  def buy
   end
 
-  def buy
+  def search
+    @item = Item.where('name LIKE(?)', "%#{params[:keyword]}%").limit(48)
   end
 
   def change
@@ -105,7 +106,7 @@ class ItemsController < ApplicationController
   def destroy
     item = Item.find(params[:id])
     item.destroy if item.seller_id == current_user.id
-    redirect_to trade_now_path
+    redirect_to "/users/#{current_user.id}/trade/sell"
   end
 
   private
