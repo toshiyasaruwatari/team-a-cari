@@ -4,14 +4,17 @@
       = form_for [@item,@review] do |f|
         .review__icons
           .review__icons--good
-            %i.fa.fa-smile-o
-            = f.check_box :review, {}, "良い", nil
+            = f.label :review, for: "good" do
+              %i.fa.fa-smile-o.review__icon--default
+              = f.check_box :review, {id: "good", class: "check__hidden"}, "良い", nil
           .review__icons--normal
-            %i.fa.fa-meh-o
-            = f.check_box :review, {}, "普通", nil
+            = f.label :review, for: "normal" do
+              %i.fa.fa-meh-o.review__icon--default
+              = f.check_box :review, {id: "normal", class: "check__hidden"}, "普通", nil
           .review__icons--bad
-            %i.fa.fa-frown-o
-            = f.check_box :review, {}, "悪い", nil
+            = f.label :review, for: "bad" do
+              %i.fa.fa-frown-o.review__icon--default
+              = f.check_box :review, {id: "bad", class: "check__hidden"}, "悪い", nil
         - if current_user.id == @item.buyer_id
           .review__button
             = f.submit :出品者を評価して取引を終わる, class: "review__submit"

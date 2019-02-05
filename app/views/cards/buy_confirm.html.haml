@@ -57,12 +57,11 @@
       .buy__content-user-inner
         %h3.buy__content-user-inner 配送先
         %address.buy__user-info-text
-          〒530-0011
+          = "〒#{@user.postal_code}"
           %br/
-          大阪府大阪市北区
-          大深町０-１
+          = "#{@user.prefecture}#{@user.city}\n#{@user.building_name}#{@user.address}"
           %br/
-          山口 宗一郎
+          = "#{@user.first_name}#{@user.last_name}"
         %p.buy-user-info-text
         = link_to root_path, class: 'buy__user-info-fix' do
           %span 変更する
