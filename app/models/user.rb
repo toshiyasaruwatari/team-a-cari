@@ -16,11 +16,6 @@ class User < ApplicationRecord
     end
   end
 
-  def self.set_review(reviews)
-    @good_reviews = reviews.where(review: "良い")
-    @normal_reviews = reviews.where(review: "普通")
-    @bad_reviews = reviews.where(review: "悪い")
-  end
 
   validates :nickname, presence: true, length: { maximum: 20 }
   validates :email, presence: true, uniqueness: true
@@ -36,5 +31,10 @@ class User < ApplicationRecord
     "徳島県": 36,"香川県": 37,"愛媛県": 38,"高知県": 39,
     "福岡県": 40,"佐賀県": 41,"長崎県": 42,"熊本県": 43,"大分県": 44,"宮崎県": 45,"鹿児島県": 46,"沖縄県": 47
   }
-
+  private
+  def self.set_review(reviews)
+    @good_reviews = reviews.where(review: "良い")
+    @normal_reviews = reviews.where(review: "普通")
+    @bad_reviews = reviews.where(review: "悪い")
+  end
 end
