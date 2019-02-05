@@ -24,6 +24,7 @@ class CardsController < ApplicationController
 
   def pay
     Payjp.api_key = ENV['PAYJP_SECRET_KEY']
+    begin
     token = Payjp::Token.create({
       :card => {
       :number => params["number"],
@@ -35,6 +36,14 @@ class CardsController < ApplicationController
        'X-Payjp-Direct-Token-Generate': 'true'
      }
     )
+    rescue Payjp::CardError => e
+      body = e.json_body
+      err  = body[:error]
+    end
+    if err.present?
+      flash.now[:alert] = "カード情報が不正です"
+      return render "registrate"
+    end
     customer = Payjp::Customer.create(
        card: token.id,
     )
