@@ -54,7 +54,7 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.new(item_params)
+    @item = Item.new(create_params)
     if @item.save
       redirect_to action: 'index'
     else
@@ -72,10 +72,24 @@ class ItemsController < ApplicationController
     @bad_reviews = @reviews.where(review: "悪い")
   end
 
+  def change
+    @item = Item.find(params[:id])
+  end
+
   def edit
+    @item = Item.find(params[:id])
   end
 
   def update
+    item = Item.find(params[:id])
+    if current_user.id == item.seller_id && user_signed_in?
+      item.update(update_params)
+      redirect_to action: 'change'
+    end
+  end
+
+  def destroy
+    @item = Item.find(params[:id])
   end
 
   def logout
@@ -84,9 +98,24 @@ class ItemsController < ApplicationController
   def buy
   end
 
+  def change
+    @item = Item.find(params[:id])
+  end
+
+  def destroy
+    item = Item.find(params[:id])
+    item.destroy if item.seller_id == current_user.id
+    redirect_to trade_now_path
+  end
+
   private
-  def item_params
+
+  def create_params
     params.require(:item).permit(:name, :price, :describe, :size_id, :brand_id, :status, :burden, :delivery_method, :prefecture, :delivery_day, :category_id, item_images_attributes: [:image]).merge(seller_id: current_user.id)
+  end
+
+  def update_params
+    params.require(:item).permit(:name, :price, :describe, :size_id, :brand_id, :status, :burden, :delivery_method, :prefecture, :delivery_day, :category_id, item_images_attributes: [:id , :item_id, :image]).merge(seller_id: current_user.id)
   end
 
 end

@@ -1,5 +1,6 @@
 .member-ship__wrapper
-  = link_to image_tag(asset_path 'phone_header'), root_path
+  = link_to root_path do
+    = image_tag (asset_path 'phone_header.png')
 
 .card__wrapper__top
   %section.card__input--text
@@ -48,3 +49,5 @@
             %span.card__question ?
           カード裏面の番号とは？
         = f.submit :登録する,class: "credit__card__add--submit"
+
+= render partial: 'modules/footer_index'

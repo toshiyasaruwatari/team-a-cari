@@ -19,6 +19,7 @@
         - @item_images.each do |item_image|
           %li
             = image_tag item_image.image
+
       .item-soldout
         - if @item.buyer_id != nil
           .item-soldout-image
@@ -63,7 +64,8 @@
         %tr
           %th ブランド
           %td
-            = @item.brand.name
+            - if @item.brand.present?
+              = @item.brand.name
         %tr
           %th 商品のサイズ
           %td
@@ -109,7 +111,6 @@
   .item-description
     %p.item-description-inner
       = @item.describe
-      %br
 
   .item-button-container.clearfix
     .item-button-left
@@ -203,9 +204,10 @@
   %section.items-box-container.clearfix.items-box-overflow
     %h2.items-box-head
       = link_to root_path, class: "extra-items" do
-        = @item.brand.name
-        その他の商品
+        - if @item.brand.present?
+          = @item.brand.name
+          その他の商品
 
     = render "other"
 
-= image_tag (asset_path "mercari.png")
+= render partial: 'modules/footer_index'

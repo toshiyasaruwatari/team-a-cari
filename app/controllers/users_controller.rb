@@ -33,6 +33,8 @@ class UsersController < ApplicationController
   def destroy
   end
 
+  def sales
+  end
 
   private
 

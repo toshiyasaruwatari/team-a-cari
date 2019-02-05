@@ -1,5 +1,6 @@
 .member-ship__wrapper
-  = link_to image_tag(asset_path 'phone_header'), root_path
+  = link_to root_path do
+    = image_tag (asset_path 'phone_header.png')
 
   .person__rbox__top
     %section.person__rbox__container.identification__user
@@ -65,5 +66,4 @@
               %span 本人情報の登録について
               %i.fa.fa-angle-right
 
-
-  = image_tag (asset_path "poricy.png")
+= render partial: 'modules/footer_logo'
