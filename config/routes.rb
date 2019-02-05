@@ -35,6 +35,8 @@ Rails.application.routes.draw do
       get '/:id/change', to: 'items#change'
       delete '/:id/change', to: 'items#destroy'
       delete '/trade/now', to: "items#trade_now"
+      get '/search', to: 'items#search'
+      post '/search', to: 'items#search'
     end
   end
 

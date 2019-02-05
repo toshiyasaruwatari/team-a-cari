@@ -27,4 +27,16 @@ class Item < ApplicationRecord
   }
   enum delivery_day: {"1~2日で発送": 1, "2~3日で発送": 2, "4~7日で発送": 3}
   enum trade: {"出品中": 0, "取引中": 1, "売却済": 2}
+
+  validates :name, presence: true, length: { maximum: 40 }
+  validates :price, presence: true, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
+  validates :describe, presence: true, length: { maximum: 1000 }
+  validates :status, presence: true
+  validates :burden, presence: true
+  validates :prefecture, presence: true
+  validates :delivery_day, presence: true
+  validates :category_id, presence: true
+  validates :delivery_method, presence: true
+  validates :seller_id, presence: true
+
 end
