@@ -24,7 +24,7 @@
     }
     .chapter-list li {
       border-top: 0.1rem solid #eee;
-      .chapter-list__box {
+      .sales-box {
         box-sizing: border-box;
         position: relative;
         display: block;
@@ -34,10 +34,10 @@
         color: #333;
         font-size: 1.4rem;
         line-height: 1;
-        .sales-left {
+        &__left {
           float: left;
         }
-        .sales-right {
+        &__right {
           float: right;
         }
         .sales-icon {

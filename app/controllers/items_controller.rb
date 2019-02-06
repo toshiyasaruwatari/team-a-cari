@@ -6,20 +6,20 @@ class ItemsController < ApplicationController
 
     ladies_category = Category.find(1)
     ladies = Category.descendants_of ladies_category
-    @ladies_items = Item.includes(:item_images).where(category_id: ladies.ids).order("created_at DESC").limit(4)
+    @ladies_items = Item.includes(:item_images).where(category_id: ladies.ids).order("created_at DESC").limit(Image_count)
 
     mens_category = Category.find(2)
     mens = Category.descendants_of mens_category
-    @mens_items = Item.includes(:item_images).where(category_id: mens.ids).order("created_at DESC").limit(4)
+    @mens_items = Item.includes(:item_images).where(category_id: mens.ids).order("created_at DESC").limit(Image_count)
 
     kids_category = Category.find(3)
     kids = Category.descendants_of kids_category
-    @kids_items = Item.includes(:item_images).where(category_id: kids.ids).order("created_at DESC").limit(4)
+    @kids_items = Item.includes(:item_images).where(category_id: kids.ids).order("created_at DESC").limit(Image_count)
 
-    @chanel_items = Item.includes(:item_images).where(brand_id: 1).order("created_at DESC").limit(4)
-    @lui_items = Item.includes(:item_images).where(brand_id: 3).order("created_at DESC").limit(4)
-    @sup_items = Item.includes(:item_images).where(brand_id:4).order("created_at DESC").limit(4)
-    @nike_items = Item.includes(:item_images).where(brand_id: 2).order("created_at DESC").limit(4)
+    @chanel_items = Item.includes(:item_images).where(brand_id: 1).order("created_at DESC").limit(Image_count)
+    @lui_items = Item.includes(:item_images).where(brand_id: 3).order("created_at DESC").limit(Image_count)
+    @sup_items = Item.includes(:item_images).where(brand_id:4).order("created_at DESC").limit(Image_count)
+    @nike_items = Item.includes(:item_images).where(brand_id: 2).order("created_at DESC").limit(Image_count)
 
   end
 
@@ -64,12 +64,12 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    @item_images = @item.item_images.limit(4)
+    @item_images = @item.item_images.limit(Image_count)
   end
 
   def change
     @item = Item.find(params[:id])
-    @item_images = @item.item_images.limit(4)
+    @item_images = @item.item_images.limit(Image_count)
   end
 
   def edit
@@ -79,7 +79,7 @@ class ItemsController < ApplicationController
     @sub_categories = Category.siblings_of(@item.category.parent)
     @third_categories = Category.siblings_of(@item.category)
 
-    @commission = (@item.price * 0.1).floor
+    @commission = (@item.price * Commission).floor
     @profit = @item.price - @commission
   end
 

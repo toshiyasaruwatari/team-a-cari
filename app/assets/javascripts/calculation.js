@@ -36,6 +36,7 @@ $(document).on('turbolinks:load', function() {
     let restPoint = usersPoint - inputPoint;
     let replacePrice = paymentPrice - inputPoint;
 
+    //ポイント入力欄が空白、又は入力欄の数字が所持ポイント以下の場合に実行
     if (inputPoint != "" && restPoint >= 0 || inputPoint == "") {
       $('.point-alert').hide();
       $('.user-point span').text(restPoint);
