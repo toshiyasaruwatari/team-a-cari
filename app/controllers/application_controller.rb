@@ -1,11 +1,13 @@
 class ApplicationController < ActionController::Base
   before_action :basic_auth, if: :production?
   protect_from_forgery with: :exception
-  before_action :authenticate_user!, except: :index
+  before_action :authenticate_user!, except: %i(index show)
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  private
+  Image_count = 4
+  Commission = 0.1
 
+  private
   def production?
     Rails.env.production?
   end

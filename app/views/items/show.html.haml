@@ -14,11 +14,17 @@
   .item-detail-container__main-content
     .item-photo
       .main-image
-        = image_tag @item_images.first.image
+        - if @item.item_images.present?
+          = image_tag @item_images.first.image
+        - else
+          = image_tag (asset_path "noimage.gif")
       %ul.sub-image
-        - @item_images.each do |item_image|
-          %li
-            = image_tag item_image.image
+        - if @item.item_images.present?
+          - @item_images.each do |item_image|
+            %li
+              = image_tag item_image.image
+
+
       .item-soldout
         - if @item.buyer_id != nil
           .item-soldout-image
@@ -34,13 +40,16 @@
             .ratings-wrapper
               .item-user-ratings
                 = fa_icon "smile-o"
-                %span 56
+                %span
+                  = @good_reviews.count
               .item-user-ratings
                 = fa_icon "meh-o"
-                %span 0
+                %span
+                  = @normal_reviews.count
               .item-user-ratings
                 = fa_icon "frown-o"
-                %span 0
+                %span
+                  = @bad_reviews.count
         %tr
           %th カテゴリー
           %td
@@ -60,7 +69,8 @@
         %tr
           %th ブランド
           %td
-            = @item.brand.name
+            - if @item.brand.present?
+              = @item.brand.name
         %tr
           %th 商品のサイズ
           %td
@@ -97,16 +107,19 @@
       - else @item.burden_before_type_cast == 2
         %p 着払い
 
+
   - if @item.buyer_id == nil
-    .item-buy-btn
-      = link_to "/items/#{@item.id}/buy_confirm", class: "item-buy-btn__link" do
-        購入画面に進む
+    - if user_signed_in? != true || current_user.id != @item.seller_id
+      .item-buy-btn
+        = link_to "/items/#{@item.id}/buy_confirm", class: "item-buy-btn__link" do
+          購入画面に進む
+    - else user_signed_in? && current_user.id == @item.seller_id
+      .item-buy-btn.hidden
   - else @item.buyer_id != nil
     .item-buy-btn.disabled 売り切れました
   .item-description
     %p.item-description-inner
       = @item.describe
-      %br
 
   .item-button-container.clearfix
     .item-button-left
@@ -190,9 +203,10 @@
   %section.items-box-container.clearfix.items-box-overflow
     %h2.items-box-head
       = link_to root_path, class: "extra-items" do
-        = @item.brand.name
-        その他の商品
+        - if @item.brand.present?
+          = @item.brand.name
+          その他の商品
 
     = render "other"
 
-= image_tag (asset_path "mercari.png")
+= render partial: 'modules/footer_index'

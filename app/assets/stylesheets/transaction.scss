@@ -89,6 +89,9 @@
         font-size: 16px;
         color: #ccc;
       }
+      .not-found {
+        text-align: center;
+      }
     }
   }
 }
@@ -104,5 +107,11 @@
 .status__select {
   border-top: 2px solid #ea352d;
   background: #fff;
+}
+.request__review {
+  span {
+    color: red;
+    font-weight: bold;
+  }
 }
 

@@ -14,16 +14,17 @@
       %section.mypage-user-icon
         = link_to root_path, class: "mypage-user-images" do
           = image_tag (asset_path "member_photo_noimage_thumb.png"), class: "mypage-user-image"
-          %h2.bold name
+          %h2.bold
+            = current_user.nickname
           .mypage-number
             .evaluation-num
               評価
               %span.bold
-                14
+                = @reviews.count
             .selling-items-num
               出品数
               %span.bold
-                23
+                = @items.count
 
       %section.mypage-tab-container-notification-todo
         %ul.mypage-tabs
@@ -152,3 +153,5 @@
             %li.mypage-go-list
               = link_to root_path, class: "open-lists" do
                 一覧を見る
+
+= render partial: 'modules/footer_index'
