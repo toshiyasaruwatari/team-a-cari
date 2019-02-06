@@ -3,10 +3,17 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :authenticate_user!, except: :index
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :search
 
   private
+
   def production?
     Rails.env.production?
+  end
+
+  def search
+    @search = Item.ransack(params[:q])
+    @items = @search.result(distinct: true)
   end
 
 # RailsアプリへのBasic認証導入用,環境変数
