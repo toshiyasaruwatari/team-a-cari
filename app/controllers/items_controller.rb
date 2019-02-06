@@ -65,6 +65,8 @@ class ItemsController < ApplicationController
   def show
     @item = Item.find(params[:id])
     @item_images = @item.item_images
+    @comments = @item.comments.includes(:user)
+    @comment = Comment.new
   end
 
   def edit
