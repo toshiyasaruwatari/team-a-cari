@@ -30,6 +30,9 @@ class UsersController < ApplicationController
   def sales
   end
 
+  def logout
+  end
+
   private
 
   def user_params
