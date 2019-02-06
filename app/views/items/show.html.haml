@@ -40,13 +40,16 @@
             .ratings-wrapper
               .item-user-ratings
                 = fa_icon "smile-o"
-                %span 56
+                %span
+                  = @good_reviews.count
               .item-user-ratings
                 = fa_icon "meh-o"
-                %span 0
+                %span
+                  = @normal_reviews.count
               .item-user-ratings
                 = fa_icon "frown-o"
-                %span 0
+                %span
+                  = @bad_reviews.count
         %tr
           %th カテゴリー
           %td
@@ -216,4 +219,4 @@
 
     = render "other"
 
-= image_tag (asset_path "mercari.png")
+= render partial: 'modules/footer_index'

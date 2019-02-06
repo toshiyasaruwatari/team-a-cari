@@ -1,11 +1,15 @@
-.member-ship__wrapper
-  = link_to image_tag(asset_path 'phone_header'), root_path
+%header.signin__header
+  = link_to root_path do
+    = image_tag (asset_path 'logo.svg'), class: "signin__header--logo"
 
 .card__wrapper__top
   %section.card__input--text
     %h2 クレジットカード情報入力
   = form_with method: 'POST',action: "/users/pay", class: "credit__card--form",url:'/users/pay',local:true do |f|
     .card__content
+      - if flash.alert.present?
+        .alert__invalid
+          %li カード情報が不正です
       .card__content--form.card__form--default
         = f.label :カード番号
         %span.card__content--require.card__require--default 必須
@@ -45,3 +49,5 @@
             %span.card__question ?
           カード裏面の番号とは？
         = f.submit :登録する,class: "credit__card__add--submit"
+
+= render partial: 'modules/footer_logo'

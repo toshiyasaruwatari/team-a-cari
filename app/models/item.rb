@@ -13,9 +13,9 @@ class Item < ApplicationRecord
   accepts_nested_attributes_for :item_images, allow_destroy: true
 
   with_options presence: true do |presence|
-    presence.validates :name
-    presence.validates :price
-    presence.validates :describe
+    presence.validates :name, length: { maximum: 40 }
+    presence.validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
+    presence.validates :describe, length: { maximum: 1000 }
     presence.validates :status
     presence.validates :burden
     presence.validates :delivery_method
@@ -23,7 +23,6 @@ class Item < ApplicationRecord
     presence.validates :delivery_day
     presence.validates :category
   end
-
 
   enum status:{"新品、未使用": 1, "未使用に近い": 2, "目立った傷や汚れなし": 3, "やや傷や汚れあり": 4, "傷や汚れあり": 5, "全体的に状態が悪い": 6}
   enum burden:{"送料込み(出品者負担)":1, "着払い(購入者負担)":2}

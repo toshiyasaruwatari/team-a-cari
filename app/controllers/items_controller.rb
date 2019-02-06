@@ -65,6 +65,11 @@ class ItemsController < ApplicationController
   def show
     @item = Item.find(params[:id])
     @item_images = @item.item_images.limit(Image_count)
+    @user = User.find(@item.seller_id)
+    @reviews = Review.where(taker_id: @user.id)
+    @good_reviews = @reviews.where(review: "良い")
+    @normal_reviews = @reviews.where(review: "普通")
+    @bad_reviews = @reviews.where(review: "悪い")
   end
 
   def change
@@ -97,10 +102,21 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  def logout
+  def buy
   end
 
-  def buy
+  def search
+    @item = Item.where('name LIKE(?)', "%#{params[:keyword]}%").limit(48)
+  end
+
+  def change
+    @item = Item.find(params[:id])
+  end
+
+  def destroy
+    item = Item.find(params[:id])
+    item.destroy if item.seller_id == current_user.id
+    redirect_to "/users/#{current_user.id}/trade/sell"
   end
 
   private
