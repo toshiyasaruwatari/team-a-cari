@@ -9,7 +9,7 @@ $(document).on('turbolinks:load', function() {
     return html;
   }
 
-  let imgCount = $(".sell-upload-item").length;
+  let imgCount = $(".sell-upload-items li").length;
 
   if (imgCount !== 0) {
     attributesNum = imgCount
@@ -66,7 +66,7 @@ $(document).on('turbolinks:load', function() {
         }
       });
 
-      let imgCount = $(".sell-upload-item").length
+      let imgCount = $(".sell-upload-items li").length
 
       if (imgCount >= 5) {
         return false
@@ -100,7 +100,7 @@ $(document).on('turbolinks:load', function() {
       }
     });
 
-    let imgCount = $(".sell-upload-item").length
+    let imgCount = $(".sell-upload-items li").length
     if (imgCount == 4) {
       $(".sell-upload-items-container").append(buildLabelHTML(attributesNum));
       attributesNum += 1;

@@ -8,8 +8,12 @@
     %section.buy__content-buy-item
       .buy-content-item-inner
         %h3.buy-item-image
-          = image_tag @item.item_images.first.image, class: 'buy__lazyloaded'
-        %p.buy__item-name.bold 商品名
+          - if @item.item_images.present?
+            = image_tag @item.item_images.first.image, class: 'buy__lazyloaded'
+          - else
+            = image_tag (asset_path "noimage.gif"), class: 'buy__lazyloaded'
+        %p.buy__item-name.bold
+          = @item.name
         = form_with class: 'buy__buy-form'
         .buy__buy-form
           %p.buy__price-ja.bold

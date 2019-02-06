@@ -4,7 +4,10 @@
     %section.items-box
       = link_to item_path(item.id) do
         .trim
-          = image_tag item.item_images.first.image
+          - if item.item_images.present?
+            = image_tag item.item_images.first.image
+          - else
+            = image_tag (asset_path "noimage.gif")
         .item-soldout
           - if item.buyer_id.present?
             .item-soldout-image
