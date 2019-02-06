@@ -17,16 +17,15 @@
     .item-detail-container__main-content
       .item-photo
         .main-image
-          = image_tag (@item.item_images.first.image)
-        %ul.sub-image
-          %li
+          - if @item.item_images.present?
             = image_tag (@item.item_images.first.image)
-          %li
-            = image_tag (asset_path "member_photo_noimage_thumb.png")
-          %li
-            = image_tag (asset_path "cloth3.jpg")
-          %li
-            = image_tag (asset_path "member_photo_noimage_thumb.png")
+          - else
+            = image_tag (asset_path "noimage.gif")
+        %ul.sub-image
+          - if @item.item_images.present?
+            - @item_images.each do |item_image|
+              %li
+                = image_tag (item_image.image)
         .item-soldout
           - if @item.buyer_id != nil
             .item-soldout-image

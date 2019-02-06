@@ -8,13 +8,21 @@
     %section.buy__content-buy-item
       .buy-content-item-inner
         %h3.buy-item-image
-          = image_tag @item.item_images.first.image, class: 'buy__lazyloaded'
-        %p.buy__item-name.bold 商品名
+          - if @item.item_images.present?
+            = image_tag @item.item_images.first.image, class: 'buy__lazyloaded'
+          - else
+            = image_tag (asset_path "noimage.gif"), class: 'buy__lazyloaded'
+        %p.buy__item-name.bold
+          = @item.name
         = form_with class: 'buy__buy-form'
         .buy__buy-form
           %p.buy__price-ja.bold
-            = @item.price
-            %span.item-shipping-fee.f14.bold 送料込み
+            = number_to_currency(@item.price, locale: 'jp')
+            - if @item.burden_before_type_cast == 1
+              %span.item-shipping-fee.f14.bold 送料込み
+            - else @item.burden_before_type_cast == 2
+              %span.item-shipping-fee.f14.bold 送料別
+
           %ul.buy__buy-accordion
             %li.buy__accordion-parent
               .buy__accordion-toggle-point
@@ -22,27 +30,16 @@
                 %i
                   = fa_icon 'angle-down', class: 'buy__accordion-icon'
 
-              / JavaScript実装の際に使う
-              / %ul.buy__accordion-child
-              /   %li.bold 所持ポイント: P 500
-              /   %li.form-group
-              /     .buy__radio-default
-              /       %label
-              /         %input{name: "consume_point_radio", type: "radio", value: "none"}
-              /         ポイントを使わない
-              /     .buy__radio-default
-              /       %label
-              /         %input{name: "consume_point_radio", type: "radio", value: "all"}
-              /         %input{type: "hidden", value: "450"}
-              /         すべてのポイントを使う
-              /         %br/
-              /         P 450
-              /     .buy__radio-default
-              /       %label
-              /         %input{name: "consume_point_radio", type: "radio", value: "partial"}
-              /         一部のポイントを使う
-              /     %input.buy__input-default{placeholder: "使うポイントを入力", type: "number", :value => ""}
-              /     %input{name: "consume_point", type: "hidden", value: "0"}
+
+          %ul.buy__accordion-child
+            %li.user-point.bold
+              所持ポイント: P
+              %span 500
+            %input.buy__input-default{placeholder: "使うポイントを入力", type: "number", value: ""}
+            %li.point-alert
+              所持ポイントを超えています
+
+
 
           %ul.buy__price-table
             %li.buy__price-row.bold
