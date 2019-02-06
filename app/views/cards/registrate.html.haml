@@ -7,6 +7,9 @@
     %h2 クレジットカード情報入力
   = form_with method: 'POST',action: "/users/pay", class: "credit__card--form",url:'/users/pay',local:true do |f|
     .card__content
+      - if flash.alert.present?
+        .alert__invalid
+          %li カード情報が不正です
       .card__content--form.card__form--default
         = f.label :カード番号
         %span.card__content--require.card__require--default 必須

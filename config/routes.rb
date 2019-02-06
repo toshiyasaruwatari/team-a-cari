@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   end
 
   resources :items do
+    resources :reviews, only: [:new, :create]
     collection do
       get '/:id/buy', to: 'items#buy'
       get '/:id/buy_confirm', to: 'cards#buy_confirm'
@@ -40,7 +41,10 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :item_images, only:[:destroy]
+  resources :items do
+    resources :comments, only: [:create]
+    resources :users, only: [:show]
+  end
 
   patch '/:id/user/identify', to: 'users#identify'
 
