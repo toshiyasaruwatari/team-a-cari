@@ -26,7 +26,7 @@
           - if @item.buyer_id != nil
             .item-soldout-image
               %p.sold SOLD
-              
+
       %table.item-detail-table
         %tbody
           %tr
@@ -58,7 +58,7 @@
                 .item-detail-table-sub-sub-category
                   = fa_icon "chevron-right"
                   = @item.category.name
-                  
+
           %tr
             %th ブランド
             %td
@@ -99,17 +99,17 @@
           %p 送料込み
         - else @item.burden_before_type_cast == 2
           %p 着払い
-     
+
     .item-description
       %p.item-description-inner
         = @item.describe
-       
+
   .item-change-container
     = link_to edit_item_path(@item.id), class: "btn-default btn-red" do
       商品の編集
     %p.text-center or
     %button.btn-default.btn-gray 出品を一旦停止する
-    %button.btn-default.btn-red この商品を削除する
+    %button.btn-default.btn-red.delete この商品を削除する
 
   .item-detail-message
     .message-container
@@ -121,7 +121,7 @@
                 .message-user-unknown
                   = image_tag (asset_path "member_photo_noimage_thumb.png"), class: "message-user-photo"
                 %figcaption.bold
-                
+
             .message-body
               .message-body-text 出品者がコメントを削除しました
               .message-icons.clearfix

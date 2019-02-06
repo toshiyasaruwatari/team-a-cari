@@ -12,9 +12,9 @@ class Item < ApplicationRecord
   has_many   :item_images, dependent: :destroy, autosave: true
   accepts_nested_attributes_for :item_images, allow_destroy: true
 
-  validates :name, presence: true
-  validates :price, presence: true
-  validates :describe, presence: true
+  validates :name, presence: true, length: { maximum: 40 }
+  validates :price, presence: true, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
+  validates :describe, presence: true, length: { maximum: 1000 }
   validates :status, presence: true
   validates :burden, presence: true
   validates :delivery_method, presence: true
