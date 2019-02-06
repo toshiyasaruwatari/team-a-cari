@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations'}
 
   devise_scope :user do
@@ -27,6 +28,7 @@ Rails.application.routes.draw do
   end
 
   resources :items do
+    resources :reviews, only: [:new, :create]
     collection do
       get '/:id/buy', to: 'items#buy'
       get '/:id/buy_confirm', to: 'cards#buy_confirm'
@@ -34,12 +36,11 @@ Rails.application.routes.draw do
       get '/:id/change', to: 'items#change'
       delete '/:id/change', to: 'items#destroy'
       delete '/trade/now', to: "items#trade_now"
+      get '/search', to: 'items#search'
+      post '/search', to: 'items#search'
     end
   end
-
-  resources :item_images, only:[:destroy]
 
   patch '/:id/user/identify', to: 'users#identify'
 
 end
-

@@ -1,3 +1,5 @@
+= render partial: 'modules/modal'
+
 %header
   - if user_signed_in?
     = render 'modules/header_log_in'
@@ -15,16 +17,15 @@
     .item-detail-container__main-content
       .item-photo
         .main-image
-          = image_tag (@item.item_images.first.image)
-        %ul.sub-image
-          %li
+          - if @item.item_images.present?
             = image_tag (@item.item_images.first.image)
-          %li
-            = image_tag (asset_path "member_photo_noimage_thumb.png")
-          %li
-            = image_tag (asset_path "cloth3.jpg")
-          %li
-            = image_tag (asset_path "member_photo_noimage_thumb.png")
+          - else
+            = image_tag (asset_path "noimage.gif")
+        %ul.sub-image
+          - if @item.item_images.present?
+            - @item_images.each do |item_image|
+              %li
+                = image_tag (item_image.image)
         .item-soldout
           - if @item.buyer_id != nil
             .item-soldout-image
@@ -61,7 +62,6 @@
                 .item-detail-table-sub-sub-category
                   = fa_icon "chevron-right"
                   = @item.category.name
-
 
           %tr
             %th ブランド
@@ -113,8 +113,7 @@
       商品の編集
     %p.text-center or
     %button.btn-default.btn-gray 出品を一旦停止する
-    %button.btn-default.btn-gray この商品を削除する
-
+    %button.btn-default.btn-red.delete この商品を削除する
 
   .item-detail-message
     .message-container
@@ -135,7 +134,6 @@
                   %span 2日前
               = fa_icon "comment rotate-90"
 
-
       .message-content
         = form_with method: 'POST', class: "message_form" do |f|
           %p
@@ -143,5 +141,4 @@
           = f.text_area :name , class: "commentarea-default"
           = f.submit 'コメントする', class: "message-submit comment-btn-default btn-gray"
 
-
-= image_tag (asset_path "mercari.png")
+= render partial: 'modules/footer_index'
