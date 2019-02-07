@@ -70,6 +70,8 @@ class ItemsController < ApplicationController
     @good_reviews = @reviews.where(review: "良い")
     @normal_reviews = @reviews.where(review: "普通")
     @bad_reviews = @reviews.where(review: "悪い")
+    @comments = @item.comments.includes(:user)
+    @comment = Comment.new
   end
 
   def change
@@ -98,15 +100,9 @@ class ItemsController < ApplicationController
     end
   end
 
-  def destroy
-    @item = Item.find(params[:id])
-  end
-
-  def buy
-  end
-
   def search
-    @item = Item.where('name LIKE(?)', "%#{params[:keyword]}%").limit(48)
+    @search = Item.includes(:user).ransack(params[:q])
+    @items = @search.result(distinct: true)
   end
 
   def change

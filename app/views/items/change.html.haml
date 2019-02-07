@@ -23,7 +23,7 @@
             = image_tag (asset_path "noimage.gif")
         %ul.sub-image
           - if @item.item_images.present?
-            - @item_images.each do |item_image|
+            - @item.item_images.each do |item_image|
               %li
                 = image_tag (item_image.image)
         .item-soldout
@@ -113,7 +113,7 @@
       商品の編集
     %p.text-center or
     %button.btn-default.btn-gray 出品を一旦停止する
-    %button.btn-default.btn-red.delete この商品を削除する
+    %button.btn-default.btn-gray.delete この商品を削除する
 
   .item-detail-message
     .message-container
